@@ -1,0 +1,159 @@
+<md-card  class='light'>
+    <div class='panel-heading'>
+        <h4> {{pageTitle}}
+            <button class="pull-right" md-mini-fab style="margin-right:10px; background-color:#e07c9e" [routerLink]="['/customerEdit', 0]"><md-icon>add</md-icon>
+                                        </button>
+            <button class="pull-right" md-mini-fab style="margin-right:10px; background-color:#a28b6e" (click)="sidenav.toggle()"><md-icon>search</md-icon></button>
+            <button class="pull-right" md-mini-fab style="margin-right:10px; background-color:darkgray" (click)="reset()"><md-icon>refresh</md-icon></button>            </h4>
+
+    </div>
+
+        <!-- Filter the Customers   -->
+        <div class='panel-body'>         
+
+            <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+
+            <div class='table-responsive'>
+          
+
+                <table class='table' *ngIf='customers && customers.length'>
+                    <thead>
+                    
+                        <tr>
+                            <th>
+                                <!--<button class='btn btn-primary'
+                                    (click)='toggleImage()'>
+                                    {{showImage ? 'Hide' : 'Show'}} Avatar
+                                </button>-->
+                            </th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td >
+                                <!--<button class='btn btn-primary'
+                                    (click)='toggleImage()'>
+                                    {{showImage ? 'Hide' : 'Show'}} Avatar
+                                </button>-->
+                            </td>
+                            <td> <input type='text' [(ngModel)]="listFilter.firstName"  (ngModelChange)="searchCustomers(listFilter)"/></td>
+                            <td><input type='text' [(ngModel)]="listFilter.lastName" (ngModelChange)="searchCustomers(listFilter)" /></td>
+                            <td><input type='text' [(ngModel)]="listFilter.email" (ngModelChange)="searchCustomers(listFilter)" /></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button   md-raised-button style="color:white; background-color:darkgrey"
+                                (click)="resetListFilter()">Reset</button>
+                            </td>
+                        </tr>                     
+                        <tr *ngFor='let customer of pagedItems'>
+                            <td>
+                                <img *ngIf='customer.avatar'
+                                    [src]='customer.avatar'
+                                    [title]='customer.firstName | uppercase'
+                                    [style.width.px]='imageWidth' 
+                                    [style.margin.px]='imageMargin'>
+                            </td>
+                            <td><a [routerLink]="['/customer', customer.id]">
+                                {{customer.firstName}}
+                                </a>
+                            </td>
+                            <td>{{ customer.lastName | lowercase }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.age | number: 0 }}</td>
+                            <td>
+                                <span *ngIf="!customer.isActive" class="glyphicon glyphicon-remove"></span>
+                                <span *ngIf="customer.isActive" class="glyphicon glyphicon-ok"></span>
+                                <!--<ai-star [rating]='customer.starRating'
+                                        (ratingClicked)='onRatingClicked($event)'>
+                                </ai-star>-->
+                        </td>
+                        <td>
+                                <button md-mini-fab style="background-color:teal"
+                                [routerLink]="['/customerEdit', customer.id]">
+                                    <md-icon>edit</md-icon>
+                                </button >
+                                &nbsp;
+                                &nbsp;
+                                <button md-mini-fab style="background-color:lightblue"
+                                (click)="openDialog(customer.id)" >
+                                <!--[routerLink]="['/customerEdit', customer.id]"-->
+                                    <md-icon>delete</md-icon>
+                                </button >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+      
+               
+            </div>
+                      <!-- pager -->
+                <md-grid-list cols="3" rowHeight="60px">
+
+                <md-grid-tile [colspan]="" > &nbsp;</md-grid-tile>
+                <md-grid-tile [colspan]="1" [rowspan]="">
+                                
+                    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                        <li [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a (click)="setPage(1)"><strong>&lt;&lt;</strong></a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a (click)="setPage(pager.currentPage - 1)"><strong>&lt;</strong></a>
+                        </li>
+                        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                            <a (click)="setPage(page)">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                            <a (click)="setPage(pager.currentPage + 1)"><strong>&gt;</strong></a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                            <a (click)="setPage(pager.totalPages)"><strong>&gt;&gt;</strong></a>
+                        </li>
+                    </ul>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="" > &nbsp;</md-grid-tile>
+                        </md-grid-list>
+
+                <div *ngIf='!customers || customers.length <=0'>   No record found !</div>
+        </div>   
+</md-card >
+
+
+
+<md-sidenav class="search-panel" dark #sidenav mode="over" opened="false" >
+    <md-card class="profile-card">
+        <md-card-header>
+            <div md-card-avatar class="avatar"></div>                          
+            <md-card-subtitle>
+
+                <button  md-raised-button  style="color:lightgrey; background-color:darkgreen"
+                        (click) = "searchCustomers(searchFilter);sidenav.toggle()"><md-icon>search</md-icon>Search </button>
+
+                <button   md-raised-button style="color:lightgrey; background-color:darkred"
+                        (click)="resetSearchFilter(sidenav)"><md-icon>refresh</md-icon>Reset</button>
+
+            </md-card-subtitle>
+        </md-card-header>
+
+    </md-card>            
+    <md-nav-list style="margin-left:20px;">
+        <md-input-container >
+            <input mdInput type="text" placeholder="First Name" style="width:200px;" name="firstName" [(ngModel)]="searchFilter.firstName" #firstName />        
+        </md-input-container>
+
+        <md-input-container>        
+            <input mdInput type="text" placeholder="Last Name" style="width:200px;" name="lastName" [(ngModel)]="searchFilter.lastName" #lastName />        
+        </md-input-container>
+
+        <md-input-container  >        
+            <input mdInput type="text" placeholder="Email" style="width:200px;" name="email" [(ngModel)]="searchFilter.email" #lastName  />
+        </md-input-container>
+            
+    </md-nav-list>
+</md-sidenav>

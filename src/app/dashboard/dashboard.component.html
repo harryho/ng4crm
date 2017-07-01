@@ -1,0 +1,89 @@
+<div>
+
+  <md-grid-list cols="4" rowHeight="120px">
+
+    <md-grid-tile>
+      <md-card class="dash-card" style="background-color: #98caa7;">
+        <md-card-header>
+
+          <md-card-title>
+            <md-icon class="pull-left">account_circle</md-icon> &nbsp; &nbsp;&nbsp; User Registrations
+            <!--<span class="card-header">  User Registrations</span>-->
+          </md-card-title>
+
+        </md-card-header>
+        <md-card-content>
+          <span style="font-size:30px;color:white;padding-left:20px;"><strong>68</strong></span>
+          <button class="pull-right" md-button>More Info</button>
+
+        </md-card-content>
+        <md-card-actions>
+
+        </md-card-actions>
+      </md-card>
+    </md-grid-tile>
+    <md-grid-tile>
+      <md-card class="dash-card" style="background-color: #c1abbf;">
+        <md-card-header>
+          <md-card-title>
+            <md-icon class="pull-left">add_shopping_cart</md-icon> &nbsp; &nbsp;&nbsp; New Orders
+          </md-card-title>
+
+        </md-card-header>
+        <md-card-content>
+          <span style="font-size:30px;color:white;padding-left:20px;"><strong>49</strong></span>
+          <button class="pull-right" md-button>More Info</button>
+        </md-card-content>
+      </md-card>
+    </md-grid-tile>
+    <md-grid-tile>
+      <md-card class="dash-card" style="background-color: #e6cea3">
+        <md-card-header>
+          <md-card-subtitle>
+            <md-icon class="pull-left">assessment</md-icon> &nbsp; &nbsp;&nbsp; Bounce Rate
+          </md-card-subtitle>
+
+        </md-card-header>
+        <md-card-content>
+          <span style="font-size:30px;color:white;padding-left:20px;"><strong>36%</strong></span>
+          <button class="pull-right" md-button>More Info</button>
+
+        </md-card-content>
+      </md-card>
+    </md-grid-tile>
+    <md-grid-tile>
+      <md-card class="dash-card" style="background-color:#adcae2">
+        <md-card-header>
+          <md-card-subtitle>
+            <md-icon class="pull-left">card_membership</md-icon> &nbsp; &nbsp;&nbsp; Unique Visitors
+          </md-card-subtitle>
+          <span><md-icon></md-icon></span>
+        </md-card-header>
+        <md-card-content>
+          <span style="font-size:30px;color:white;padding-left:20px;"><strong>32</strong></span>
+          <button class="pull-right" md-button>More Info</button>
+        </md-card-content>
+      </md-card>
+    </md-grid-tile>
+  </md-grid-list>
+
+  <md-grid-list cols="2" rowHeight="450px">
+
+    <md-grid-tile>
+ <md-card style="width:95%">
+      <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" chartType="line" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+ </md-card>
+    </md-grid-tile>
+    <md-grid-tile>
+      <md-card style="width:95%">
+      <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" chartType="bar" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+      </md-card>
+
+    </md-grid-tile>
+
+
+  </md-grid-list>
+
+</div>

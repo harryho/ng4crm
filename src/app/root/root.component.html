@@ -1,0 +1,64 @@
+
+
+<div *ngIf="!authService.isAuthenticated()">
+  <login></login>
+</div>
+
+<div *ngIf="authService.isAuthenticated()">
+  <md-sidenav-container *ngIf="currentUser.isAuthenticated" class="app-container" fullscreen>
+    <md-sidenav dark #sidenav mode="side" opened="true">
+      <md-card class="profile-card">
+        <md-card-header>
+          <div md-card-avatar class="avatar">
+          </div>
+          <md-card-title style="padding:10px;">{{currentUser.firstName}} {{currentUser.lastName}}
+
+          </md-card-title>
+
+          <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+        </button>
+          <md-menu #menu="mdMenu">
+            <button md-menu-item (click)="logout()">Logout</button>
+            <button md-menu-item>Change Password</button>
+          </md-menu>
+        </md-card-header>
+
+      </md-card>
+      <md-nav-list>
+        <a md-list-item routerLink="dashboard">
+          <md-icon md-list-icon>show_chart</md-icon>
+          <span md-line>Dashboard</span>
+        </a>
+        <a md-list-item [routerLink]=" ['./customer'] ">
+          <md-icon md-list-icon>list</md-icon>
+          <span md-line>Customer</span>
+        </a>
+
+        <a md-list-item (click)="navigate('./about')">
+          <md-icon md-list-icon>list</md-icon>
+          <span md-line>About</span>
+        </a>
+
+      </md-nav-list>
+    </md-sidenav>
+
+    <md-toolbar *ngIf="currentUser.isAuthenticated" light>
+      <button md-icon-button (click)="sidenav.toggle()">
+            <img src="/assets/img/logo_rtk_sm.png" style="width: 36px; height: 36px" alt="company" />
+        </button>
+
+      <span style="margin-left: 20px"></span>
+
+    </md-toolbar>
+    <div class="main">
+        <div *ngIf="showDashboard">
+            <dashboard></dashboard>
+        </div>
+          <router-outlet></router-outlet>
+      </div>
+      <footer class="footer">
+        <span>&copy; Reetek 2017 Angular 4 CRM </span>
+      </footer>
+  </md-sidenav-container>
+<div>

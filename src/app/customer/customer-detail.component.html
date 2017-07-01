@@ -1,0 +1,54 @@
+<div class="panel panel-primary" *ngIf="customer">
+    <div class="panel-heading" style="font-size:large">
+        {{pageTitle + ": " + customer.customerName}}
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">First Name:</div>
+                    <div class="col-md-6">{{customer.firstName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Last Name:</div>
+                    <div class="col-md-6">{{customer.lastName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">email:</div>
+                    <div class="col-md-6">{{customer.email}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Status:</div>
+                    <div class="col-md-6">  
+                        <span *ngIf="!customer.isActive" class="glyphicon glyphicon-remove"></span>
+                            <span *ngIf="customer.isActive" class="glyphicon glyphicon-ok"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Age:</div>
+                    <div class="col-md-6">{{customer.age| number }}</div>
+                </div>
+            </div>
+
+            <div class="col-md-6" *ngIf="customer.avatar">
+                <img *ngIf='customer.avatar' class="center-block img-responsive" 
+                                 [src]='customer.avatar'
+                                 [title]='customer.firstName | uppercase'
+                                 [style.width.px]='imageWidth' 
+                                 [style.margin.px]='imageMargin'>
+            
+            </div>
+        </div>
+        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-default" (click)="onBack()" style="width:80px">
+            <i class="glyphicon glyphicon-chevron-left"></i> Back
+        </a>
+        <a class="btn btn-primary" style="width:80px;margin-left:10px" 
+           [routerLink]="['/customerEdit', customer.id]">
+            Edit
+        </a>
+    </div>
+</div>

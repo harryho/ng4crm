@@ -1,0 +1,141 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <div class="panel-body">        
+        
+        <form class="form-horizontal"       
+              novalidate
+              (ngSubmit)="saveCustomer()"
+              [formGroup]="customerForm" >
+            <fieldset>
+
+                <div class="form-group"  >
+                   
+                  
+                    <img style="padding-left:100px;" *ngIf='showImage && customer.avatar'
+                                 [src]='customer.avatar'
+                                 [title]='customer.firstName | uppercase'
+                                 [style.width.px]='imageWidth' 
+                                 [style.margin.px]='imageMargin'>
+
+                </div>
+                <div class="form-group" 
+                     [ngClass]="{'has-error': displayMessage.firstName }">
+                    <label class="col-md-2 control-label" for="firstNameId">First Name</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                                id="firstNameId" 
+                                type="text" 
+                                placeholder="First Name (required)" 
+                                formControlName="firstName" />
+                        <span class="help-block" *ngIf="displayMessage.firstName">
+                                {{displayMessage.firstName}}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group" 
+                     [ngClass]="{'has-error': displayMessage.lastName}">
+                    <label class="col-md-2 control-label" for="lastNameId">Last Name</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                                id="lastNameId" 
+                                type="text" 
+                                placeholder="Last Name (required)" 
+                                formControlName="lastName" />
+                        <span class="help-block" *ngIf="displayMessage.lastName">
+                                {{displayMessage.lastName}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group" 
+                     [ngClass]="{'has-error': displayMessage.email}">
+                    <label class="col-md-2 control-label" for="emailId">Email</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                                id="emailId" 
+                                type="text" 
+                                placeholder="Email (required)" 
+                                formControlName="email" />
+                        <span class="help-block" *ngIf="displayMessage.email">
+                                {{displayMessage.email}}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': displayMessage.age}">
+                    <label class="col-md-2 control-label" for="ageId">Age (0-150)</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                                id="ageId" 
+                                type="text" 
+                                placeholder="Age" 
+                                formControlName="age" />
+                        <span class="help-block" *ngIf="displayMessage.age">
+                                {{displayMessage.mixin-arguments-4}}
+                        </span>
+                    </div>
+                </div>
+                 <div class="form-group" [ngClass]="{'has-error': displayMessage.age}">
+                    <!--<label class="col-md-2 control-label" for="ageId">Age (0-150)</label>-->
+                    <label class="col-md-2 control-label">Status:</label>
+                    <div class="col-md-8">
+                       
+                        <input class="form-control" 
+                                id="isActiveId" 
+                                type="checkbox" 
+                                placeholder="Age" 
+                                formControlName="isActive" />
+                        <span class="help-block" *ngIf="displayMessage.isActive">
+                                {{displayMessage.isActive}}
+                        </span>
+                    </div>
+                </div>
+              
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    style="width:80px;margin-right:10px"
+                                    [disabled]='!customerForm.valid'>
+                                Save
+                            </button>
+                        </span>
+                        <span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               [routerLink]="['/customers']">
+                                Cancel
+                            </a>
+                        </span>
+                        <!--<span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               (click)="deleteCustomer()">
+                                Delete
+                            </a>
+                        </span>   -->
+                         <span>
+                        <button class='btn btn-primary'
+                                (click)='toggleImage()'>
+                                {{showImage ? 'Hide' : 'Show'}} Avatar
+                            </button> 
+                            </span>
+
+                     </div>
+                </div>
+            </fieldset>
+        </form>
+         
+        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+    </div>
+
+</div>

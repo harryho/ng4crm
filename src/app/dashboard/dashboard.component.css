@@ -1,0 +1,11 @@
+.dash-card{
+    width: 100%;
+    background-color: grey;
+    
+
+}
+
+.card-header{
+    font-size:16;
+    margin-top: -5px;
+}

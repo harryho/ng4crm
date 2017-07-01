@@ -1,0 +1,40 @@
+﻿<md-grid-list cols="3">
+
+  <md-grid-tile [colspan]="" > &nbsp;</md-grid-tile>
+  <md-grid-tile [colspan]="1" [rowspan]="">
+    <md-card class="login-card">
+     
+        <md-card-header>
+          <div card-lg-image class="login-header"></div>
+          <md-card-title>
+            <h2 style="color:darkcyan">Reetek Angular CRM</h2> 
+          </md-card-title>
+           <!--<md-card-subtitle>
+            <h4>Login</h4>
+          </md-card-subtitle>-->
+        </md-card-header>
+         <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <md-card-content>
+
+          <md-input-container   [ngClass]="{ 'mat-input-error': f.submitted && !username.valid }">
+            
+            <input mdInput type="text" placeholder="User Name" style="width:300px;" name="username" [(ngModel)]="model.username" #username="ngModel"
+              required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-content>
+          <md-input-container style="" [ngClass]="{ 'mat-input-error': f.submitted && !password.valid }">
+            <input mdInput type="password" placeholder="Password" style="width:300px;" name="password" [(ngModel)]="model.password" #password="ngModel"
+              required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block" ui-autocomplete="false">Password is required</div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions>
+          <button md-raised-button [disabled]="loading" class="btn btn-primary pull-right">Login</button>
+        </md-card-actions>
+      </form>
+    </md-card>
+  </md-grid-tile>
+  <md-grid-tile [colspan]="" > &nbsp;</md-grid-tile>
+</md-grid-list>

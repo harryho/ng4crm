@@ -2,9 +2,9 @@
 
 > A simple reusable CRM project for real-world business based on Angular 4, Angular-Material & Bootstrap 3. 
 
-This project starts from a popular starter project [AngularClass/Angular-Starter] (https://github.com/AngularClass/angular-starter). The goal of this project is to create reusable project for real-world business. To achieve this target, we need a solution which should include authentication process, restful API feature with token support and simple but elegant UI design. 
+This project starts from a popular starter project [AngularClass/AngularStarter](https://github.com/AngularClass/angular-starter). The goal of this project is to create reusable project for real-world business. To achieve this target, we need a solution which should include authentication process, restful API feature with token support and simple but elegant UI design. 
 
-There is another similar project built on the Vue.js. If you are looking for reusable CRM project with Vue.js, please clone from [here](https://github.com/harryho/vue2crm.git).
+There is another similar project built on the Vue.js. If you are looking for reusable CRM project with Vue.js, please clone the repo Vue2Crm from [here](https://github.com/harryho/vue2crm.git).
 
 #### Features
 

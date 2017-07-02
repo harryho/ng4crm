@@ -7,5 +7,4 @@ export interface ICustomer {
     age: number;
     email: string;
     isActive: boolean;
-
 }

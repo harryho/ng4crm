@@ -3,10 +3,6 @@ import { RouterModule} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgProgressModule, NgProgressBrowserXhr, NgProgressService } from 'ngx-progressbar';
 
-// Imports for loading & configuring the in-memory web api
-// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { CustomerData }  from './customer-data';
-
 import { CustomerListComponent } from './customer-list.component';
 import { CustomerDetailComponent } from './customer-detail.component';
 import { CustomerDetailGuard, CustomerEditGuard } from './customer-guard.service';

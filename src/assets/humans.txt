@@ -8,10 +8,10 @@
 # THANKS
 
   <name>
-  PatrickJS -- @gdi2290
-  AngularClass -- @AngularClass
+  HarryHo -- @harryho
+  Reetek -- @Reetek
 
 # TECHNOLOGY COLOPHON
 
   HTML5, CSS3
-  Angular2, TypeScript, Webpack
+  Angular4, TypeScript, Webpack

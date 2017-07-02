@@ -1,10 +1,10 @@
 
 
 <div *ngIf="!authService.isAuthenticated()">
-  <login></login>
+  <login ></login>
 </div>
 
-<div *ngIf="authService.isAuthenticated()">
+<div [hidden]="!authService.isAuthenticated()">
   <md-sidenav-container class="app-container" fullscreen>
     <md-sidenav dark #sidenav mode="side" opened="true">
       <md-card class="profile-card">
@@ -55,9 +55,6 @@
 
     </md-toolbar>
     <div class="main">
-        <div *ngIf="showDashboard">
-            <dashboard></dashboard>
-        </div>
           <router-outlet></router-outlet>
       </div>
       <footer class="footer">

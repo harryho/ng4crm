@@ -18,7 +18,8 @@ import {
 } from '@angularclass/hmr';
 import {
   RouterModule,
-  PreloadAllModules
+  PreloadAllModules,
+
 } from '@angular/router';
 
 /*
@@ -34,7 +35,7 @@ import { AppState, InternalStateType } from './app.service';
 import { AboutComponent } from './about';
 import { ErrorPageComponent } from './errorpage';
 import { LoginComponent } from './login';
-import { LogoutComponent } from './logout';
+// import { LogoutComponent } from './logout';
 import { RootComponent } from './root';
 import { DashboardComponent } from './dashboard'
 import { ConfirmDialog} from './shared'
@@ -45,9 +46,10 @@ import { ConfirmDialog} from './shared'
 import { ChartsModule } from 'ng2-charts';
 import { RootModule } from './root';
 import { CustomerModule } from './customer';
-// import { ProductModule } from './products';
-// import { SharedModule } from './shared';
-import { AuthGuard } from './_guard';
+
+import {AppPreloader } from './app.preloader';
+
+import { AuthGuard  } from './_guard';
 import { BackendService, AuthenticationService, PagerService } from './_services';
 // import {  } from '../_services';
 // import { BackendService, AlertService, AuthenticationService, UserService } from './_services';
@@ -82,13 +84,11 @@ type StoreType = {
     ErrorPageComponent,
     // XLargeDirective,
     LoginComponent,
-    LogoutComponent,
+    // LogoutComponent,
     RootComponent,
     DashboardComponent,
     ConfirmDialog,
-    
-    // StarComponent
-    // AlertComponent
+
   ],
   /**
    * Import Angular's modules.
@@ -100,11 +100,9 @@ type StoreType = {
     FormsModule,
     HttpModule,
     ChartsModule,
-   NgProgressModule, 
-   RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules }),
-    // NgProgressBrowserXhr,
-    // RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
-    // ProductModule,
+    NgProgressModule, 
+    // RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules }),
+     RouterModule.forRoot(ROUTES, {preloadingStrategy: AppPreloader, initialNavigation:false}),
     CustomerModule,
     RootModule,
 
@@ -115,6 +113,8 @@ type StoreType = {
    */
   providers: [
     AuthGuard,
+
+    AppPreloader,
     BackendService,
     AuthenticationService,
     PagerService,
@@ -129,13 +129,7 @@ export class AppModule {
     public appRef: ApplicationRef,
     public appState: AppState,
     private progress: NgProgressService
-  ) {
-
-    // console.log('AppModule ...')
-    // let http = <Http>{}
-    // console.log(this.http)
-    // this.http.get("http://localhost:5354/token");
-  }
+  ) {   }
 
   public hmrOnInit(store: StoreType) {
     if (!store || !store.state) {

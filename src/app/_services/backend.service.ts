@@ -46,11 +46,8 @@ export class BackendService {
 
     // private helper methods
     private form() {
-        // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        // if (currentUser && currentUser.token) {
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         return new RequestOptions({ headers: headers });
-        // }
     }
 
     private jwt() {

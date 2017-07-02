@@ -17,49 +17,24 @@ import { RootComponent } from './root'
 import { AuthenticationService } from "./_services";
 /**
  * App Component
- * Top Level Component
  */
 @Component({
   selector: 'app',
-  // encapsulation: ViewEncapsulation.None,
-  // styleUrls: [
-  //   './app.component.css'
-  // ],
   template: `  
    <ng-progress></ng-progress>
-  <root></root>   
+    <root ></root>
   `
 })
-export class AppComponent implements DoCheck {
-  // public name = 'Reetek Angular CRM';
-    // currentUser: User;
+export class AppComponent implements OnInit {
+
+isAuth:boolean;
 
   constructor(
     public appState: AppState,
     private router: Router,
     private authService: AuthenticationService
-  ) {
-    // console.log('Initial App constructor  auth ' + this.authService.isAuthenticated(), this.router);
-
-  }
+  ) {}
 
   public ngOnInit() {
-    // console.log('Initial App ngOnInit');
-
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // if (!this.currentUser) this.currentUser = <User>{};
-
-    // console.log('Initial App ngDoCheck ' + this.router.url + ' auth ' + this.authService.isAuthenticated());
   }
-
-  public ngDoCheck() {
-
-
-
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // if (!this.currentUser) this.currentUser = <User>{};
-    // console.log('Initial App ngDoCheck ' + this.router.url + '  auth ' + this.authService.isAuthenticated());
-
-  }
-
 }

@@ -10,17 +10,12 @@ a.active {
 }
 
 .main {
- /*padding: 10px;*/
- margin: 20px;
+   margin: 20px;
 }
 
 div.avatar {
   background-image: url('/assets/img/avatar0.png');
   background-size: cover;
-}
-
-.profile-card{
-    /*min-width: 220px;*/
 }
 
 .footer {

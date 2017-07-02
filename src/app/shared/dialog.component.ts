@@ -3,7 +3,6 @@ import {MD_DIALOG_DATA, MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
     selector: 'confirm-dialog',
-    //   templateUrl: './dialog-result-example-dialog.html',
     template: `
 <h1 md-dialog-title>{{data && data.title? data.title: 'Dialog'}}</h1>
 
@@ -13,9 +12,7 @@ import {MD_DIALOG_DATA, MdDialog, MdDialogRef } from '@angular/material';
 <div md-dialog-actions>
   <button md-button [md-dialog-close]="ACTION_CONFIRM">Confirm</button>
   <button md-button [md-dialog-close]="ACTION_CANCEL">Cancel</button>
-</div>
-
-`
+</div>`
 })
 export class ConfirmDialog {
     // dialogTitle: string;

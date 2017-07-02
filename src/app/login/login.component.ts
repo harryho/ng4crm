@@ -10,7 +10,13 @@ import {MaterialModule} from '@angular/material';
     moduleId: module.id.toString(),
     // encapsulation: ViewEncapsulation.None,
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styles: [`
+    .login-card {
+      width: 100%;
+      margin: 30px;
+    }
+    `]
+    
 })
 
 export class LoginComponent implements OnInit {
@@ -21,9 +27,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService//) {}
-        // private alertService: AlertService,
-) { }
+        private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
         // reset login status
@@ -31,11 +35,11 @@ export class LoginComponent implements OnInit {
 
         this.model.username = 'hho@test.com';
         this.model.password = 'password';
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log(this.returnUrl)
 
-        // this.router.navigate(['/']);
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        // this.returnUrl = this.returnUrl === "/"?"dashboard":this.returnUrl;     
+
+        console.log(this.returnUrl)
     }
 
     login() {
@@ -45,20 +49,17 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(this.route)
-                    this.router.navigate(['/']);
-                    // this.router.navigate([this.returnUrl]);
+                    // this.router.navigate(['/']);
+                    this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    // this.alertService.error(error);
                     console.log(error);
                     this.loading = false;
                 });
     }
 
     public ngOnChecks(){
-
          console.log(this.router.navigated )
-
     }
 
     // private handleError(error: Response) {

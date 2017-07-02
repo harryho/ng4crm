@@ -11,17 +11,12 @@ import { ActivatedRoute } from '@angular/router';
   template: `
   <md-card>
     <h1>About</h1>
-    <!--<div>
-      For hot module reloading run
-      <pre>npm run start:hmr</pre>
-    </div>-->
     <div>
       <h3>
         Reeteek Angular 4 CRM Version 1.0.0
       </h3>
     </div>
     </md-card>
-    <!--<pre>this.localState = {{ localState | json }}</pre>-->
   `
 })
 export class AboutComponent implements OnInit {

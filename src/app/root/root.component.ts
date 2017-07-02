@@ -30,31 +30,24 @@ export class RootComponent implements  DoCheck {
   public name = 'Reetek Angular CRM';
 
   currentUser: User;
-
   showDashboard: boolean;
 
   constructor(
     public appState: AppState,
     private router: Router,
-       private authService: AuthenticationService
-  ) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log('ROOT constructor  is null ? ' + (this.currentUser === null || this.currentUser === undefined))
-      if (!this.currentUser) this.currentUser = <User>{};
-    // }
-    // console.log('Initial App constructor', this.router);
-  console.log('Initial Root constructor');
+    private authService: AuthenticationService ) {
+
+
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));     
+    if (!this.currentUser) this.currentUser = <User>{};
+    this.showDashboard = this.router.url === '/';
+
   }
 
   public ngOnInit() {
-    console.log('ngOnInit');
-
-    // if (!this.currentUser) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log('ROOT  ngOnInit  is null ? ' + (this.currentUser === null || this.currentUser === undefined))
-      if (!this.currentUser) this.currentUser = <User>{};
-
-
+    // console.log('ngOnInit');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.showDashboard = this.router.url === '/'
   }
 
   logout(): void {
@@ -68,14 +61,9 @@ export class RootComponent implements  DoCheck {
   }
 
   public ngDoCheck() {
-    console.log('Root ngDoCheck');
-    // if (!this.currentUser) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log('Root ngDoCheck  is null ? ' + (this.currentUser === null || this.currentUser === undefined))
+       this.showDashboard = this.router.url === '/';
       if (!this.currentUser) this.currentUser = <User>{};
-    // }
-    this.showDashboard = this.router.url === '/'
-    console.log('Initial Root ngDoCheck');
   }
 
 }

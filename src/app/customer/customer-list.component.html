@@ -1,14 +1,14 @@
 <md-card  class='light'>
     <div class='panel-heading'>
-        <h4> {{pageTitle}}
+        <h1> {{pageTitle}}
             <button class="pull-right" md-mini-fab style="margin-right:10px; background-color:#e07c9e" [routerLink]="['/customerEdit', 0]"><md-icon>add</md-icon>
                                         </button>
             <button class="pull-right" md-mini-fab style="margin-right:10px; background-color:#a28b6e" (click)="sidenav.toggle()"><md-icon>search</md-icon></button>
-            <button class="pull-right" md-mini-fab style="margin-right:10px; background-color:darkgray" (click)="reset()"><md-icon>refresh</md-icon></button>            </h4>
+            <button class="pull-right" md-mini-fab style="margin-right:10px; background-color:darkgray" (click)="reset()"><md-icon>refresh</md-icon></button>            </h1>
 
     </div>
 
-        <!-- Filter the Customers   -->
+    
         <div class='panel-body'>         
 
             <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
@@ -35,12 +35,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                            <!-- Filter the Customers   -->
                         <tr >
                             <td >
-                                <!--<button class='btn btn-primary'
-                                    (click)='toggleImage()'>
-                                    {{showImage ? 'Hide' : 'Show'}} Avatar
-                                </button>-->
                             </td>
                             <td> <input type='text' [(ngModel)]="listFilter.firstName"  (ngModelChange)="searchCustomers(listFilter)"/></td>
                             <td><input type='text' [(ngModel)]="listFilter.lastName" (ngModelChange)="searchCustomers(listFilter)" /></td>
@@ -70,9 +67,7 @@
                             <td>
                                 <span *ngIf="!customer.isActive" class="glyphicon glyphicon-remove"></span>
                                 <span *ngIf="customer.isActive" class="glyphicon glyphicon-ok"></span>
-                                <!--<ai-star [rating]='customer.starRating'
-                                        (ratingClicked)='onRatingClicked($event)'>
-                                </ai-star>-->
+            
                         </td>
                         <td>
                                 <button md-mini-fab style="background-color:teal"
@@ -82,8 +77,7 @@
                                 &nbsp;
                                 &nbsp;
                                 <button md-mini-fab style="background-color:lightblue"
-                                (click)="openDialog(customer.id)" >
-                                <!--[routerLink]="['/customerEdit', customer.id]"-->
+                                (click)="openDialog(customer.id)" >       
                                     <md-icon>delete</md-icon>
                                 </button >
                             </td>
@@ -119,13 +113,9 @@
                 </md-grid-tile>
                 <md-grid-tile [colspan]="" > &nbsp;</md-grid-tile>
                         </md-grid-list>
-
                 <div *ngIf='!customers || customers.length <=0'>   No record found !</div>
         </div>   
 </md-card >
-
-
-
 <md-sidenav class="search-panel" dark #sidenav mode="over" opened="false" >
     <md-card class="profile-card">
         <md-card-header>

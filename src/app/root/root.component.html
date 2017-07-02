@@ -5,7 +5,7 @@
 </div>
 
 <div *ngIf="authService.isAuthenticated()">
-  <md-sidenav-container *ngIf="currentUser.isAuthenticated" class="app-container" fullscreen>
+  <md-sidenav-container class="app-container" fullscreen>
     <md-sidenav dark #sidenav mode="side" opened="true">
       <md-card class="profile-card">
         <md-card-header>
@@ -30,22 +30,25 @@
           <md-icon md-list-icon>show_chart</md-icon>
           <span md-line>Dashboard</span>
         </a>
-        <a md-list-item [routerLink]=" ['./customer'] ">
-          <md-icon md-list-icon>list</md-icon>
+        <a md-list-item routerLink="customer">
+           <!--[routerLink]=" ['./customer'] ">-->
+          <md-icon md-list-icon>account_box</md-icon>
           <span md-line>Customer</span>
         </a>
 
-        <a md-list-item (click)="navigate('./about')">
-          <md-icon md-list-icon>list</md-icon>
+        <a md-list-item routerLink="about"  > 
+          <!--(click)="navigate('./about')">-->
+          <md-icon md-list-icon>info_outline</md-icon>
           <span md-line>About</span>
         </a>
 
       </md-nav-list>
     </md-sidenav>
 
-    <md-toolbar *ngIf="currentUser.isAuthenticated" light>
+    <md-toolbar light>
+      <img src="/assets/img/logo_rtk_sm.png" style="width: 36px; height: 36px" alt="company" />
       <button md-icon-button (click)="sidenav.toggle()">
-            <img src="/assets/img/logo_rtk_sm.png" style="width: 36px; height: 36px" alt="company" />
+            <md-icon md-list-icon>list</md-icon>
         </button>
 
       <span style="margin-left: 20px"></span>

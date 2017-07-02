@@ -22,40 +22,34 @@ import { AuthenticationService } from "./_services";
 @Component({
   selector: 'app',
   // encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.component.css'
-  ],
+  // styleUrls: [
+  //   './app.component.css'
+  // ],
   template: `  
    <ng-progress></ng-progress>
   <root></root>   
   `
 })
 export class AppComponent implements DoCheck {
-
-  public name = 'Reetek Angular CRM';
-
-  // currentUser: User;
+  // public name = 'Reetek Angular CRM';
+    // currentUser: User;
 
   constructor(
     public appState: AppState,
     private router: Router,
     private authService: AuthenticationService
   ) {
-
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // if (!this.currentUser) this.currentUser = <User>{};
-
-    console.log('Initial App constructor  auth ' + this.authService.isAuthenticated(), this.router);
+    // console.log('Initial App constructor  auth ' + this.authService.isAuthenticated(), this.router);
 
   }
 
   public ngOnInit() {
-    console.log('Initial App ngOnInit');
+    // console.log('Initial App ngOnInit');
 
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // if (!this.currentUser) this.currentUser = <User>{};
 
-    console.log('Initial App ngDoCheck ' + this.router.url + ' auth ' + this.authService.isAuthenticated());
+    // console.log('Initial App ngDoCheck ' + this.router.url + ' auth ' + this.authService.isAuthenticated());
   }
 
   public ngDoCheck() {
@@ -64,7 +58,7 @@ export class AppComponent implements DoCheck {
 
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // if (!this.currentUser) this.currentUser = <User>{};
-    console.log('Initial App ngDoCheck ' + this.router.url + '  auth ' + this.authService.isAuthenticated());
+    // console.log('Initial App ngDoCheck ' + this.router.url + '  auth ' + this.authService.isAuthenticated());
 
   }
 

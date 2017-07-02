@@ -51,10 +51,12 @@ import { AuthGuard } from './_guard';
 import { BackendService, AuthenticationService, PagerService } from './_services';
 // import {  } from '../_services';
 // import { BackendService, AlertService, AuthenticationService, UserService } from './_services';
-// import '../assets/css/deeppurple-amber.css';
-import '../assets/css/pink-bluegrey.css';
-import '../styles/styles.scss';
+// import '../assets/css/indigo-pink.css';
 import '../styles/headings.css';
+import '../styles/styles.scss';
+
+// import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -99,8 +101,9 @@ type StoreType = {
     HttpModule,
     ChartsModule,
    NgProgressModule, 
+   RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules }),
     // NgProgressBrowserXhr,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    // RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     // ProductModule,
     CustomerModule,
     RootModule,

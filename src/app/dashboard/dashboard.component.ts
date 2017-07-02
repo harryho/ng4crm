@@ -18,9 +18,15 @@ import { MdSidenav} from '@angular/material';
 @Component({
   selector: 'dashboard',
   // encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './dashboard.component.css'
-  ],
+  styles: [`
+  .dash-card{
+    width: 100%;
+    background-color: grey;
+  }
+  .card-header{
+      font-size:16;
+      margin-top: -5px;
+  }`],
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {

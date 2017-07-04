@@ -4,7 +4,6 @@ import { Http, HttpModule,BrowserXhr  } from '@angular/http';
 import { MaterialModule , MdDialogRef, MdDialog} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// import { BrowserXhr } from '@angular/http';
 import {NgProgressModule, NgProgressBrowserXhr, NgProgressService } from 'ngx-progressbar';
 
 import {
@@ -27,38 +26,32 @@ import {
  */
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
+
 // App is our top level component
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-// import { HomeComponent } from './home';
+
 import { AboutComponent } from './about';
 import { ErrorPageComponent } from './errorpage';
 import { LoginComponent } from './login';
-// import { LogoutComponent } from './logout';
+
 import { RootComponent } from './root';
 import { DashboardComponent } from './dashboard'
 import { ConfirmDialog} from './shared'
 
-// import { XLargeDirective } from './home/x-large';
-
-// import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { ChartsModule } from 'ng2-charts';
 import { RootModule } from './root';
 import { CustomerModule } from './customer';
 import { OrderModule } from './order';
 
-import {AppPreloader } from './app.preloader';
-
+// Providers
+import { AppPreloader } from './app.preloader';
 import { AuthGuard  } from './_guard';
 import { BackendService, AuthenticationService, PagerService } from './_services';
-// import {  } from '../_services';
-// import { BackendService, AlertService, AuthenticationService, UserService } from './_services';
-// import '../assets/css/indigo-pink.css';
+
 import '../styles/headings.css';
 import '../styles/styles.scss';
-
-// import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
 
 
 // Application wide providers

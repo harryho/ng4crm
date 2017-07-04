@@ -4,9 +4,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { routes } from './root.routes';
-// import { AuthGuard  } from '../_guard';
-
-console.log('`Barrel` bundle loaded asynchronously');
 
 @NgModule({
   declarations: [

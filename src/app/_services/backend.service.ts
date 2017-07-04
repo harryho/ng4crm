@@ -39,8 +39,6 @@ export class BackendService {
     }
 
     login(action: string, user: User) {
-        // this.http.get("http://localhost:5354/token").do()
-
         return this.http.get(this.baseUrl + action).map((response: Response) => response.json());
     }
 

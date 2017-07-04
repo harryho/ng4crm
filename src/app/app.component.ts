@@ -1,5 +1,5 @@
 /**
- * Angular 2 decorators and services
+ * Angular 4 decorators and services
  */
 import {
   Component,

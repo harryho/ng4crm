@@ -1,5 +1,5 @@
 /**
- * Angular 2
+ * Angular 4
  */
 import {
   enableDebugTools,

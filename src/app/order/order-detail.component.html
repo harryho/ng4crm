@@ -1,0 +1,49 @@
+<div class="panel panel-primary" *ngIf="order">
+    <div class="panel-heading" style="font-size:large">
+        {{pageTitle + ": " + order.orderName}}
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">Product:</div>
+                    <div class="col-md-6">{{order.product}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Price:</div>
+                    <div class="col-md-6">AUD ${{order.price | number }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Quantity:</div>
+                    <div class="col-md-6">{{order.quantity}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Amount:</div>                 
+                         <div class="col-md-6">AUD ${{order.quantity * order.price | number}}</div>       
+                </div>
+      
+            </div>
+
+            <!--<div class="col-md-6" *ngIf="order.avatar">
+                <img *ngIf='order.avatar' class="center-block img-responsive" 
+                                 [src]='order.avatar'
+                                 [title]='order.product | uppercase'
+                                 [style.width.px]='imcustomerIdWidth' 
+                                 [style.margin.px]='imcustomerIdMargin'>
+            
+            </div>-->
+        </div>
+        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-default" (click)="onBack()" style="width:80px">
+            <i class="glyphicon glyphicon-chevron-left"></i> Back
+        </a>
+        <a class="btn btn-primary" style="width:80px;margin-left:10px" 
+           [routerLink]="['/orderEdit', order.id]">
+            Edit
+        </a>
+    </div>
+</div>

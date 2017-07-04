@@ -46,6 +46,7 @@ import { ConfirmDialog} from './shared'
 import { ChartsModule } from 'ng2-charts';
 import { RootModule } from './root';
 import { CustomerModule } from './customer';
+import { OrderModule } from './order';
 
 import {AppPreloader } from './app.preloader';
 
@@ -73,7 +74,7 @@ type StoreType = {
 };
 
 /**
- * `AppModule` is the main entry point into Angular2's bootstraping process
+ * `AppModule` is the main entry point into Angular4's bootstraping process
  */
 @NgModule({
   bootstrap: [AppComponent],
@@ -101,9 +102,9 @@ type StoreType = {
     HttpModule,
     ChartsModule,
     NgProgressModule, 
-    // RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules }),
-     RouterModule.forRoot(ROUTES, {preloadingStrategy: AppPreloader, initialNavigation:false}),
+    RouterModule.forRoot(ROUTES, {preloadingStrategy: AppPreloader, initialNavigation:false}),
     CustomerModule,
+    OrderModule,
     RootModule,
 
   ],

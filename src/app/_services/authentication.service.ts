@@ -12,12 +12,11 @@ export class AuthenticationService {
     login(user: any) {
         return this.backend.login('token', user)
             .map((response: Response) => {
-                // login successful if there's a jwt token in the response
+                // login successful if there's a token in the response
                 let data = (<any>response);
-                console.log (data)
                 let user = <User>data.user;
                 if (user && data.access_token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    // store user details and token in local storage to keep user logged in between page refreshes
                     user.token = data.access_token;
                     user.isAuthenticated = true;
                     localStorage.setItem('currentUser', JSON.stringify(user));

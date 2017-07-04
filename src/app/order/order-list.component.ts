@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ICustomer } from './customer';
-import { CustomerService } from './customer.service';
+import { IOrder } from './order';
+import { OrderService } from './order.service';
 import { PagerService } from '../_services';
 import { ConfirmDialog } from '../shared';
 import * as _ from 'lodash';
@@ -9,19 +9,19 @@ import { MdDialog, MdDialogRef, MdSnackBar } from '@angular/material';
 
 
 @Component({
-    templateUrl: './customer-list.component.html',
-    styleUrls: ['./customer-list.component.css'],
+    templateUrl: './order-list.component.html',
+    styleUrls: ['./order-list.component.css'],
     providers: [ ConfirmDialog]
 })
-export class CustomerListComponent implements OnInit {
-    pageTitle: string = 'Customers';
-    imageWidth: number = 30;
-    imageMargin: number = 2;
+export class OrderListComponent implements OnInit {
+    pageTitle: string = 'Orders';
+    imcustomerIdWidth: number = 30;
+    imcustomerIdMargin: number = 2;
     showImage: boolean = false;
     listFilter: any = {};
     errorMessage: string;
 
-    customers: ICustomer[];
+    orders: IOrder[];
     pager: any = {};
     pagedItems: any[];
     searchFilter: any = {};
@@ -32,14 +32,18 @@ export class CustomerListComponent implements OnInit {
     public confirmClicked: boolean = false;
     public cancelClicked: boolean = false;
 
-    constructor(private customerService: CustomerService,
+    constructor(private orderService: OrderService,
         private pagerService: PagerService, public dialog: MdDialog, public snackBar: MdSnackBar) {
     }
 
+    toggleImage(): void {
+        this.showImage = !this.showImage;
+    }
+
     ngOnInit(): void {
-        this.customerService.getCustomers()
-            .subscribe(customers => {
-                this.customers = customers;                
+        this.orderService.getOrders()
+            .subscribe(orders => {
+                this.orders = orders;                
                 this.setPage(1);
             },
             error => this.errorMessage = <any>error);
@@ -48,15 +52,14 @@ export class CustomerListComponent implements OnInit {
         this.listFilter = {};
     }
 
-    getCustomers(pageNum? : number) {
-        this.customerService.getCustomers()
-                .subscribe(customers => {
-                    this.customers = customers;
+    getOrders(pageNum? : number) {
+        this.orderService.getOrders()
+                .subscribe(orders => {
+                    this.orders = orders;
                     this.setPage(pageNum||1);
                 },
                 error => this.errorMessage = <any>error);
     }
-
 
     setPage(page: number) {
         if (page < 1 || (this.pager.totalPages > 0 && page > this.pager.totalPages)) {
@@ -64,24 +67,24 @@ export class CustomerListComponent implements OnInit {
         }
 
         // get pager object from service
-        this.pager = this.pagerService.getPager(this.customers.length, page, 5);
+        this.pager = this.pagerService.getPager(this.orders.length, page, 5);
 
         // get current page of items
-        this.pagedItems = this.customers.slice(this.pager.startIndex, this.pager.endIndex + 1);
+        this.pagedItems = this.orders.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
 
-    searchCustomers(filters: any) {
+    searchOrders(filters: any) {
         if (filters) {
-            this.customerService.getCustomers()
-                .subscribe(customers => {
-                    this.customers = customers;
-                    console.log(this.customers.length)
-                    this.customers = this.customers.filter((customer: ICustomer) => {
+            this.orderService.getOrders()
+                .subscribe(orders => {
+                    this.orders = orders;
+                    console.log(this.orders.length)
+                    this.orders = this.orders.filter((order: IOrder) => {
                         let match = true;
 
                         Object.keys(filters).forEach((k) => {
                             match = match && filters[k] ?
-                                customer[k].toLocaleLowerCase().indexOf(filters[k].toLocaleLowerCase()) > -1 : match;
+                                order[k].toLocaleLowerCase().indexOf(filters[k].toLocaleLowerCase()) > -1 : match;
                         })
                         return match;
                     });
@@ -94,20 +97,21 @@ export class CustomerListComponent implements OnInit {
 
     resetListFilter() {
         this.listFilter = {};
-        this.getCustomers();
+        this.getOrders();
     }
 
      reset() {
        this.listFilter = {};
         this.searchFilter = {};
-        this.getCustomers();
 
+        this.getOrders();
     }
 
     resetSearchFilter(searchPanel: any) {
         searchPanel.toggle();
         this.searchFilter = {};
-        this.getCustomers();
+
+        this.getOrders();
     }
 
     openSnackBar(message: string, action: string) {
@@ -126,11 +130,11 @@ export class CustomerListComponent implements OnInit {
             this.selectedOption = result;
 
             if (this.selectedOption === dialogRef.componentInstance.ACTION_CONFIRM) {
-                this.customerService.deleteCustomer(id).subscribe(
+                this.orderService.deleteOrder(id).subscribe(
                     () => {
-                        this.customerService.getCustomers()
-                            .subscribe(customers => {
-                                this.customers = customers;
+                        this.orderService.getOrders()
+                            .subscribe(orders => {
+                                this.orders = orders;
                                 this.setPage(1);
                             },
                             error => this.errorMessage = <any>error);

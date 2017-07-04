@@ -58,9 +58,9 @@ showImage:boolean;
                 maxlength: 'Customer first name cannot exceed 100 characters.'
             },
             lastName: {
-                required: 'Customer first name is required.',
-                minlength: 'Customer first name must be at least one characters.',
-                maxlength: 'Customer first name cannot exceed 100 characters.'
+                required: 'Customer last name is required.',
+                minlength: 'Customer last name must be at least one characters.',
+                maxlength: 'Customer last name cannot exceed 100 characters.'
             },
             email: {
                 required: 'Customer email is required.',

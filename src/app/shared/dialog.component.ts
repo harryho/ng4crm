@@ -29,9 +29,3 @@ export class ConfirmDialog {
 
      }
 }
-// export class ConfirmDialog {
-//   constructor(public dialogRef: MdDialogRef<ConfirmDialog>) {
-
-
-//   }
-// }

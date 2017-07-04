@@ -46,5 +46,11 @@ export class RootComponent implements OnInit {
     this.router.navigate(['login']);    
   }
 
+  isAuth ( isAuth : boolean ){
+    if (isAuth){
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'))||<User>{};
+    }
+  } 
+
 }
 

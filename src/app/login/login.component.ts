@@ -20,7 +20,7 @@ import {MaterialModule} from '@angular/material';
 })
 
 export class LoginComponent implements OnInit {
-
+    @Output() isAuth  = new EventEmitter<boolean>();
     model: any = {};
     loading = false;
     returnUrl: string;
@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     console.log('login ' + this.returnUrl);
                         this.router.navigate([this.returnUrl]);
+                    this.isAuth.emit(true);
                 },
                 error => {
                     console.log(error);

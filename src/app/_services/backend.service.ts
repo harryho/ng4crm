@@ -39,7 +39,11 @@ export class BackendService {
     }
 
     login(action: string, user: User) {
-        return this.http.get(this.baseUrl + action).map((response: Response) => response.json());
+         let url = `${this.baseUrl}${action}`;
+         // Use get method to call Restful fake API to pretend login 
+         return this.http.get(url).map((response: Response) => response.json());
+         // Production should use post method as follow
+         // return this.http.post(url, JSON.stringify(user), this.form()).map((response: Response) => response.json());
     }
 
     // private helper methods

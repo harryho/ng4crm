@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model)
             .subscribe(
                 data => {
-                    console.log('login '+this.returnUrl   );
+                    console.log('login ' + this.returnUrl);
                         this.router.navigate([this.returnUrl]);
                 },
                 error => {

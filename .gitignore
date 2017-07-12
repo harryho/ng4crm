@@ -73,3 +73,6 @@ dll/
 
 /src/**/*.js
 /src/**/*.js.map
+
+# Fake server
+server/

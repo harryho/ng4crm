@@ -1,10 +1,9 @@
-# Reetek Angular CRM
+# Angular CRM
 
-> A simple reusable CRM project for real-world business based on Angular 4, Angular-Material & Bootstrap 3. 
+> A reusable CRM starter project for real-world business based on Angular 4, Angular-Material & Bootstrap 3. 
 
 This project starts from a popular starter project [AngularClass/AngularStarter](https://github.com/AngularClass/angular-starter). The goal of this project is to create reusable project for real-world business. To achieve this target, we need a solution which should include authentication process, restful API feature with token support and simple but elegant UI design. 
 
-There is another similar project built on the Vue.js. If you are looking for reusable CRM project with Vue.js, please clone the repo Vue2Crm from [here](https://github.com/harryho/vue2crm.git).
 
 #### Features
 
@@ -12,6 +11,15 @@ There is another similar project built on the Vue.js. If you are looking for reu
 * The UI part of this project combine Angular-Material and Bootstrap 3. Because the controls from Angular-Material is very limited, there are a few extra components require Bootstrap 3 for help. 
 * This project includes ng-charts, pagination, progress-bar, confirmation dialog, etc. features.
 * It uses Json-Server as fake Restful API. (You can simple replace it with your own API)
+
+
+#### Alternatives
+
+There are two similar projects respectively built on the Vue.js and React. If you have interests in those technical stacks. You can find and clone those repositories below.
+
+* [Vue2Crm](https://github.com/harryho/vue2crm.git).
+* [React-Crm](https://github.com/harryho/react-crm.git).
+
 
 #### Screenshots
 

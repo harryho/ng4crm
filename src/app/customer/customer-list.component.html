@@ -44,6 +44,7 @@
                             <td><input type='text' [(ngModel)]="listFilter.email" (ngModelChange)="searchCustomers(listFilter)" /></td>
                             <td></td>
                             <td></td>
+                            
                             <td>
                                 <button   md-raised-button style="color:white; background-color:darkgrey"
                                 (click)="resetListFilter()">Reset</button>
@@ -88,10 +89,10 @@
                
             </div>
                       <!-- pager -->
-                <md-grid-list cols="3" rowHeight="60px">
+                <md-grid-list cols="5" rowHeight="60px">
 
                 <md-grid-tile [colspan]="" > &nbsp;</md-grid-tile>
-                <md-grid-tile [colspan]="1" [rowspan]="">
+                <md-grid-tile [colspan]="3" [rowspan]="">
                                 
                     <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                         <li [ngClass]="{disabled:pager.currentPage === 1}">

@@ -27,7 +27,7 @@ export  class OrderEditGuard implements CanDeactivate<OrderEditComponent> {
 
     canDeactivate(component: OrderEditComponent): boolean {
         if (component.orderForm.dirty) {
-            let orderName = component.orderForm.get('product').value || 'New Order';
+            let orderName = component.orderForm.get('reference').value || 'New Order';
             return confirm(`Navigate away and lose all changes to ${orderName}?`);
         }
         return true;

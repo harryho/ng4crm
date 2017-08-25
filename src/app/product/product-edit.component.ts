@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChildren, ElementRef} from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewChildren, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 import { ActivatedRoute, Router  } from '@angular/router';
 
@@ -8,16 +8,15 @@ import 'rxjs/add/observable/merge';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { IOrder } from './order';
-import { OrderService } from './order.service';
+import { IProduct } from './product';
+import { ProductService } from './product.service';
 
 import { NumberValidators } from '../shared/number.validator';
 import { GenericValidator } from '../shared/generic-validator';
 import {CustomerService, ICustomer} from "../customer";
 
-
 @Component({
-    templateUrl: './order-edit.component.html',
+    templateUrl: './product-edit.component.html',
     styles: [`
     .example-section {
         display: flex;
@@ -31,16 +30,14 @@ import {CustomerService, ICustomer} from "../customer";
         }
     `]
 })
-export class OrderEditComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
-    // @ViewChild('mydp') mydp: MyDatePicker;
 
-
-    pageTitle: string = 'Order Edit';
+    pageTitle: string = 'Product Edit';
     errorMessage: string;
-    orderForm: FormGroup;
+    productForm: FormGroup;
 
-    order: IOrder;
+    product: IProduct;
     private sub: Subscription;
     showImage:boolean;
     customers:ICustomer [];
@@ -53,25 +50,25 @@ export class OrderEditComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(private fb: FormBuilder,
                 private route: ActivatedRoute,
                 private router: Router,
-                private orderService: OrderService,
+                private productService: ProductService,
                 private customerService: CustomerService) {
 
         // Defines all of the validation messcustomerIds for the form.
         // These could instead be retrieved from a file or database.
         this.validationMessages = {
-            reference: {
-                required: 'Order reference is required.',
-                minlength: 'Order reference must be at least one characters.',
-                maxlength: 'Order reference cannot exceed 100 characters.'
+            product: {
+                required: 'Product first name is required.',
+                minlength: 'Product first name must be at least one characters.',
+                maxlength: 'Product first name cannot exceed 100 characters.'
             },
-            amount: {
-                 range: 'Amount of the order must be between 1 (lowest) and 9999 (highest).'
+            price: {
+                 range: 'Age of the product must be between 1 (lowest) and 9999 (highest).'
             },
             quantity: {
-                 range: 'Quantity of the order must be between 1 (lowest) and 20 (highest).'
+                 range: 'Age of the product must be between 1 (lowest) and 20 (highest).'
             },
             customerId: {
-                required: 'Customer is required.',
+                range: 'Age of the product must be between 1 (lowest) and 99999 (highest).'
             }
         };
 
@@ -79,27 +76,21 @@ export class OrderEditComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.orderForm = this.fb.group({
-            reference:['', [Validators.required,
+        this.productForm = this.fb.group({
+            product:['', [Validators.required,
                                Validators.minLength(3),
                                Validators.maxLength(100)]],
-            amount:['', NumberValidators.range(1, 99999)],
+            price:['', NumberValidators.range(1, 99999)],
             quantity:['', NumberValidators.range(1, 20)],
-            orderDate:[''],
-            shippedDate:[''],
-            address: ['', [Validators.required,]],
-            city: ['', [Validators.required,]],
-            country: ['', [Validators.required,]],
-            zipcode: ['', [Validators.required,]],
-            customerId: ['', Validators.required],
+            customerId: ['', NumberValidators.range(1, 9999999)],
             isActive: false,
         });
 
-        // Read the order Id from the route parameter
+        // Read the product Id from the route parameter
         this.sub = this.route.params.subscribe(
             params => {
                 let id = +params['id'];
-                this.getOrder(id);
+                this.getProduct(id);
             }
         );
 
@@ -116,15 +107,15 @@ export class OrderEditComponent implements OnInit, AfterViewInit, OnDestroy {
             .map((formControl: ElementRef) => Observable.fromEvent(formControl.nativeElement, 'blur'));
 
         // Merge the blur event observable with the valueChanges observable
-        Observable.merge(this.orderForm.valueChanges, ...controlBlurs).debounceTime(800).subscribe(value => {
-            this.displayMessage = this.genericValidator.processMessages(this.orderForm);
+        Observable.merge(this.productForm.valueChanges, ...controlBlurs).debounceTime(800).subscribe(value => {
+            this.displayMessage = this.genericValidator.processMessages(this.productForm);
         });
     }
 
-    getOrder(id: number): void {
-        this.orderService.getOrder(id)
+    getProduct(id: number): void {
+        this.productService.getProduct(id)
             .subscribe(
-                (order: IOrder) => this.onOrderRetrieved(order),
+                (product: IProduct) => this.onProductRetrieved(product),
                 (error: any) => this.errorMessage = <any>error
             );
     }
@@ -139,42 +130,35 @@ export class OrderEditComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
 
-    onOrderRetrieved(order: IOrder): void {
-        if (this.orderForm) {
-            this.orderForm.reset();
+    onProductRetrieved(product: IProduct): void {
+        if (this.productForm) {
+            this.productForm.reset();
         }
-        this.order = order;
+        this.product = product;
 
-        if (this.order.id === 0) {
-            this.pageTitle = 'Add Order';
+        if (this.product.id === 0) {
+            this.pageTitle = 'Add Product';
         } else {
-            this.pageTitle = `Edit Order: ${this.order.reference} ${this.order.amount}`;
+            this.pageTitle = `Edit Product: ${this.product.productName} ${this.product.unitPrice}`;
         }
 
         // Update the data on the form
-        this.orderForm.patchValue({
-            reference: this.order.reference,
-            amount: this.order.amount,
-            quantity:  this.order.products.length,
-            products: this.order.products,
-            orderDate: new Date(this.order.orderDate),
-            shippedDate: new Date(this.order.shippedDate),
-            address: this.order.shipAddress.address,
-            city: this.order.shipAddress.city,
-            country: this.order.shipAddress.country,
-            zipcode: this.order.shipAddress.zipcode,
-            customerId: this.order.customerId,     
-            isActive: this.order.isActive
+        this.productForm.patchValue({
+            product: this.product.productName,
+            price: this.product.unitPrice,
+            quantity:  this.product.unitInStock,
+            // customerId: this.product.customerId,     
+            // isActive: this.product.isActive
         });
     }
 
-    deleteOrder(): void {
-        if (this.order.id === 0) {
+    deleteProduct(): void {
+        if (this.product.id === 0) {
             // Don't delete, it was never saved.
             this.onSaveComplete();
        } else {
-            if (confirm(`Really delete the order: ${this.order.reference}?`)) {
-                this.orderService.deleteOrder(this.order.id)
+            if (confirm(`Really delete the product: ${this.product.productName}?`)) {
+                this.productService.deleteProduct(this.product.id)
                     .subscribe(
                         () => this.onSaveComplete(),
                         (error: any) => this.errorMessage = <any>error
@@ -183,33 +167,24 @@ export class OrderEditComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-    saveOrder(): void {
-        if (this.orderForm.dirty && this.orderForm.valid) {
-            // Copy the form values over the order object values
-            let p = Object.assign({}, this.order, this.orderForm.value);
+    saveProduct(): void {
+        if (this.productForm.dirty && this.productForm.valid) {
+            // Copy the form values over the product object values
+            let p = Object.assign({}, this.product, this.productForm.value);
 
-            this.orderService.saveOrder(p)
+            this.productService.saveProduct(p)
                 .subscribe(
                     () => this.onSaveComplete(),
                     (error: any) => this.errorMessage = <any>error
                 );
-        } else if (!this.orderForm.dirty) {
+        } else if (!this.productForm.dirty) {
             this.onSaveComplete();
         }
     }
 
     onSaveComplete(): void {
         // Reset the form to clear the flags
-        this.orderForm.reset();
-        this.router.navigate(['/orders']);
+        this.productForm.reset();
+        this.router.navigate(['/products']);
     }
-
-    addProduct(): void {
-
-    }
-
-    deleteProduct(product): void {
-
-    }
-
 }

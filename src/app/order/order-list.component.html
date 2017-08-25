@@ -22,10 +22,12 @@
                         <tr>
                             <th>
                             </th>
-                            <th>Product</th>
-                            <th>Price</th>
+                            <th>Reference</th>
+                           
                             <th>Quantiy</th>
                             <th>Amount</th>
+                             <th>Order Date</th>
+                             <th>Shipped Date</th>
                             <th>Customer</th>
                             <th></th>
                         </tr>
@@ -35,11 +37,12 @@
                         <tr >
                             <td >
                             </td>
-                            <td> <input type='text' [(ngModel)]="listFilter.product"  (ngModelChange)="searchOrders(listFilter)"/></td>
-                            <td><input type='text' [(ngModel)]="listFilter.price" (ngModelChange)="searchOrders(listFilter)" /></td>
+                            <td> <input type='text' [(ngModel)]="listFilter.reference"  (ngModelChange)="searchOrders(listFilter)"/></td>
+                            <td><input type='text' [(ngModel)]="listFilter.amount" (ngModelChange)="searchOrders(listFilter)" /></td>
                             <td><input type='text' [(ngModel)]="listFilter.quantity" (ngModelChange)="searchOrders(listFilter)" /></td>
                             <td></td>
                             <td></td>
+                             <td></td>
                             <td>
                                 <button   md-raised-button style="color:white; background-color:darkgrey"
                                 (click)="resetListFilter()">Reset</button>
@@ -49,17 +52,19 @@
                             <td>
                                 <img *ngIf='order.avatar'
                                     [src]='order.avatar'
-                                    [title]='order.product | uppercase'
+                                    [title]='order.reference | uppercase'
                                     [style.width.px]='imcustomerIdWidth' 
                                     [style.margin.px]='imcustomerIdMargin'>
                             </td>
                             <td><a [routerLink]="['/order', order.id]">
-                                {{order.product}}
+                                {{order.reference}}
                                 </a>
                             </td>
-                            <td>{{ order.price | number: 0.00}}</td>
-                            <td>{{ order.quantity | number: 0 }}</td>
-                            <td>{{ order.price * order.quantity | number: 0 }}</td>
+                        
+                            <td>{{ order.products.length | number: 0 }}</td>
+                            <td>{{ order.amount | number: 0 }}</td>
+                            <td>{{ order.orderDate | date:'shortDate' }}</td>
+                              <td>{{ order.shippedDate | date:'shortDate' }}</td>
                             <td>
                                 {{order.customer? order.customer.firstName: '' }} {{order.customer? order.customer.lastName:'' }}
             
@@ -78,15 +83,14 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
-      
+                </table>     
                
             </div>
                       <!-- pager -->
-                <md-grid-list cols="3" rowHeight="60px">
+                <md-grid-list cols="5" rowHeight="60px">
 
                 <md-grid-tile [colspan]="" > &nbsp;</md-grid-tile>
-                <md-grid-tile [colspan]="1" [rowspan]="">
+                <md-grid-tile [colspan]="3" [rowspan]="">
                                 
                     <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
                         <li [ngClass]="{disabled:pager.currentPage === 1}">
@@ -129,15 +133,15 @@
     </md-card>            
     <md-nav-list style="margin-left:20px;">
         <md-input-container >
-            <input mdInput type="text" placeholder="First Name" style="width:200px;" name="product" [(ngModel)]="searchFilter.product" #product />        
+            <input mdInput type="text" placeholder="First Name" style="width:200px;" name="reference" [(ngModel)]="searchFilter.reference" #reference />        
         </md-input-container>
 
         <md-input-container>        
-            <input mdInput type="text" placeholder="Last Name" style="width:200px;" name="price" [(ngModel)]="searchFilter.price" #price />        
+            <input mdInput type="text" placeholder="Last Name" style="width:200px;" name="amount" [(ngModel)]="searchFilter.amount" #amount />        
         </md-input-container>
 
         <md-input-container  >        
-            <input mdInput type="text" placeholder="Email" style="width:200px;" name="quantity" [(ngModel)]="searchFilter.quantity" #price  />
+            <input mdInput type="text" placeholder="Email" style="width:200px;" name="quantity" [(ngModel)]="searchFilter.quantity" #amount  />
         </md-input-container>
             
     </md-nav-list>

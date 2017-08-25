@@ -1,6 +1,6 @@
-<div class="panel panel-primary" *ngIf="order">
+<div class="panel panel-primary" *ngIf="product">
     <div class="panel-heading" style="font-size:large">
-        {{pageTitle + ": " + order.orderName}}
+        {{pageTitle + ": " + product.productName}}
     </div>
 
     <div class="panel-body">
@@ -8,27 +8,27 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-3">Product:</div>
-                    <div class="col-md-6">{{order.reference}}</div>
+                    <div class="col-md-6">{{product.product}}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Price:</div>
-                    <div class="col-md-6">AUD ${{order.amount | number }}</div>
+                    <div class="col-md-6">AUD ${{product.price | number }}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Quantity:</div>
-                    <div class="col-md-6">{{order.quantity}}</div>
+                    <div class="col-md-6">{{product.quantity}}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Amount:</div>                 
-                         <div class="col-md-6">AUD ${{order.quantity * order.amount | number}}</div>       
+                         <div class="col-md-6">AUD ${{product.quantity * product.price | number}}</div>       
                 </div>
       
             </div>
 
-            <!--<div class="col-md-6" *ngIf="order.avatar">
-                <img *ngIf='order.avatar' class="center-block img-responsive" 
-                                 [src]='order.avatar'
-                                 [title]='order.reference | uppercase'
+            <!--<div class="col-md-6" *ngIf="product.avatar">
+                <img *ngIf='product.avatar' class="center-block img-responsive" 
+                                 [src]='product.avatar'
+                                 [title]='product.product | uppercase'
                                  [style.width.px]='imcustomerIdWidth' 
                                  [style.margin.px]='imcustomerIdMargin'>
             
@@ -42,7 +42,7 @@
             <i class="glyphicon glyphicon-chevron-left"></i> Back
         </a>
         <a class="btn btn-primary" style="width:80px;margin-left:10px" 
-           [routerLink]="['/orderEdit', order.id]">
+           [routerLink]="['/productEdit', product.id]">
             Edit
         </a>
     </div>

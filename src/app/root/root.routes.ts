@@ -2,6 +2,7 @@ import {AboutComponent} from '../about';
 import {RootComponent} from './root.component';
 // import { HomeComponent } from './home.component';
 import {DashboardComponent} from '../dashboard';
+import {ProductListComponent} from '../product';
 import {CustomerListComponent} from '../customer';
 import {OrderListComponent} from '../order';
 import {AuthGuard} from '../_guard';
@@ -24,6 +25,9 @@ export const routes = [
       , {
         path: 'order',
         component: OrderListComponent
+      }, {
+        path: 'product',
+        component: ProductListComponent
       }
     ]
   }

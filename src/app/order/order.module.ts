@@ -3,6 +3,7 @@ import { RouterModule} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgProgressModule, NgProgressBrowserXhr, NgProgressService } from 'ngx-progressbar';
 
+
 import { OrderListComponent } from './order-list.component';
 import { OrderDetailComponent } from './order-detail.component';
 import { OrderDetailGuard, OrderEditGuard } from './order-guard.service';
@@ -12,6 +13,7 @@ import { OrderService } from './order.service';
 
 import { SharedModule } from '../shared/shared.module';
 import {MaterialModule} from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -37,7 +39,7 @@ import {MaterialModule} from '@angular/material';
      */
     OrderListComponent,
     OrderDetailComponent,
-    OrderEditComponent,
+    OrderEditComponent
   ],
   providers: [
     OrderService,

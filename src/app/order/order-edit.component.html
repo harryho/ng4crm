@@ -1,91 +1,16 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">
-        {{pageTitle}}
-    </div>
+  <div class="panel-heading">
+    {{pageTitle}}
+  </div>
 
-    <div class="panel-body">        
-        
-        <form class="form-horizontal"       
-              novalidate
-              (ngSubmit)="saveOrder()"
-              [formGroup]="orderForm" >
-            <fieldset>
+  <div class="panel-body">
 
-                <div class="form-group"  >
-                   
-                  
-                    <img style="padding-left:100px;" *ngIf='showImage && order.avatar'
-                                 [src]='order.avatar'
-                                 [title]='order.product | uppercase'
-                                 [style.width.px]='imcustomerIdWidth' 
-                                 [style.margin.px]='imcustomerIdMargin'>
-
-                </div>
-                <div class="form-group" 
-                     [ngClass]="{'has-error': displayMessage.product }">
-                    <label class="col-md-2 control-label" for="productId">Product</label>
-
-                    <div class="col-md-8">
-                        <input class="form-control" 
-                                id="productId" 
-                                type="text" 
-                                placeholder="Product (required)" 
-                                formControlName="product" />
-                        <span class="help-block" *ngIf="displayMessage.product">
-                                {{displayMessage.product}}
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="form-group" 
-                     [ngClass]="{'has-error': displayMessage.price}">
-                    <label class="col-md-2 control-label" for="priceId">Price</label>
-
-                    <div class="col-md-8">
-                        <input class="form-control" 
-                                id="priceId" 
-                                type="text" 
-                                placeholder="Price (required)" 
-                                formControlName="price" />
-                        <span class="help-block" *ngIf="displayMessage.price">
-                                {{displayMessage.price}}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="form-group" 
-                     [ngClass]="{'has-error': displayMessage.quantity}">
-                    <label class="col-md-2 control-label" for="quantityId">Quantiy</label>
-
-                    <div class="col-md-8">
-                        <input class="form-control" 
-                                id="quantityId" 
-                                type="text" 
-                                placeholder="Email (required)" 
-                                formControlName="quantity" />
-                        <span class="help-block" *ngIf="displayMessage.quantity">
-                                {{displayMessage.quantity}}
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group" [ngClass]="{'has-error': displayMessage.customerId}">
-                    <label class="col-md-2 control-label" for="customerIdId">Age (0-150)</label>
-
-                    <div class="col-md-8">
-                   
-                          <select  class="form-control"  id="customerIdId"  formControlName="customerId">
-                            <option *ngFor="let customer of customers" [ngValue]="customer.id" [selected]="order.customerId === customer.id">{{customer.firstName}} {{customer.lastName}}</option>
-                        </select>
-                        <span class="help-block" *ngIf="displayMessage.customerId">
-                                {{displayMessage.mixin-arguments-4}}
-                        </span>
-                    </div>
-                </div>
-             
-
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-2">
-                        <span>
+    <form class="form-horizontal" novalidate (ngSubmit)="saveOrder()" [formGroup]="orderForm">
+      <div class="container-fluid">
+          <div class="row">
+          <div class="form-group ">
+            <div class="col-md-3 pull-right">
+              <span class="pull-right">
                             <button class="btn btn-primary"
                                     type="submit"
                                     style="width:80px;margin-right:10px"
@@ -93,33 +18,193 @@
                                 Save
                             </button>
                         </span>
-                        <span>
+              <span class="pull-right">
                             <a class="btn btn-default"
                                style="width:80px"
                                [routerLink]="['/orders']">
                                 Cancel
                             </a>
                         </span>
-                        <!--<span>
+                <span class="pull-right">
+                    <a class="btn btn-default"
+                        style="width:80px"
+                        [routerLink]="['/orders']">
+                        Add
+                    </a>
+                </span>
+              <!--<span>
                             <a class="btn btn-default"
                                style="width:80px"
                                (click)="deleteOrder()">
                                 Delete
                             </a>
                         </span>   -->
-                         <!--<span>
+              <!--<span>
                         <button class='btn btn-primary'
                                 (click)='toggleImage()'>
                                 {{showImage ? 'Hide' : 'Show'}} Avatar
                             </button> 
                             </span>-->
+            </div>
 
-                     </div>
-                </div>
-            </fieldset>
-        </form>
-         
-        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
-    </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.customerId}">
+              <label class="col-md-4  control-label" for="customerIdId">Customer </label>
+
+              <div class="col-md-8">
+                <select class="form-control" id="customerIdId" formControlName="customerId">
+                            <option *ngFor="let customer of customers" [ngValue]="customer.id" [selected]="order.customerId === customer.id">{{customer.firstName}} {{customer.lastName}}</option>
+                        </select>
+                <span class="help-block" *ngIf="displayMessage.customerId">
+                                {{displayMessage.mixin-arguments-4}}
+                        </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.reference }">
+              <label class="col-md-4 control-label" for="referenceId">Reference</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="referenceId" type="text" placeholder="Product (required)" formControlName="reference" />
+                <span class="help-block" *ngIf="displayMessage.reference">
+                                {{displayMessage.reference}}
+                        </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.amount}">
+              <label class="col-md-4 control-label" for="amountId">Amount</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="amountId" type="text" placeholder="Price (required)" formControlName="amount" />
+                <span class="help-block" *ngIf="displayMessage.amount">
+                                {{displayMessage.amount}}
+                        </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.quantity}">
+              <label class="col-md-4 control-label" for="quantityId">Quantiy</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="quantityId" type="text" placeholder="Email (required)" formControlName="quantity" />
+                <span class="help-block" *ngIf="displayMessage.quantity">
+                                          {{displayMessage.quantity}}
+                                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.orderDate}">
+              <label class="col-md-4 control-label" for="orderDateId">Order Date</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="orderDateId" type="date" formControlName="orderDate" disabled />
+                <span class="help-block" *ngIf="displayMessage.orderDate">
+                                {{displayMessage.orderDate}}
+                        </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.shippedDate}">
+              <label class="col-md-4 control-label" for="orderDateId">Shipped Date</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="shippedDateId" type="date" formControlName="shippedDate" />
+                <span class="help-block" *ngIf="displayMessage.shippedDate">
+                                {{displayMessage.shippedDate}}
+                        </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.address}">
+              <label class="col-md-4 control-label" for="orderDateId">Address</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="addressId" type="text" formControlName="address" disabled />
+                <span class="help-block" *ngIf="displayMessage.address">
+                                {{displayMessage.address}}
+                        </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.city}">
+              <label class="col-md-4 control-label" for="orderDateId">City</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="cityId" type="text" formControlName="city" />
+                <span class="help-block" *ngIf="displayMessage.city">
+                                {{displayMessage.city}}
+                        </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.country}">
+              <label class="col-md-4 control-label" for="orderDateId">Country</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="countryId" type="text" formControlName="country" />
+                <span class="help-block" *ngIf="displayMessage.country">
+                                {{displayMessage.country}}
+                        </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="form-group" [ngClass]="{'has-error': displayMessage.zipcode}">
+              <label class="col-md-4 control-label" for="orderDateId">Zip Code</label>
+
+              <div class="col-md-8">
+                <input class="form-control" id="zipcodeId" type="text" formControlName="zipcode" />
+                <span class="help-block" *ngIf="displayMessage.zipcode">
+                                {{displayMessage.zipcode}}
+                        </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <md-list>
+            <h3 md-subheader>Products</h3>
+            <md-list-item style="background-color:#e7ecf7;"  *ngFor="let product of order.products">
+              <md-icon md-list-icon>folder</md-icon>
+              <h4 md-line>{{product.productName}}   </h4><button md-mini-fab style="background-color:lightgrey;float:right;"
+                                (click)="openDialog(product)" >       
+                                    <md-icon>delete</md-icon>
+                                </button >
+              <p md-line> AUD ${{product.price | number }} </p>
+                <!--<md-divider></md-divider>-->
+            </md-list-item>
+          
+            <!--<h3 md-subheader>Notes</h3>
+            <md-list-item *ngFor="let note of notes">
+              <md-icon md-list-icon>note</md-icon>
+              <h4 md-line>{{note.name}}</h4>
+              <p md-line> {{note.updated | date}} </p>
+            </md-list-item>-->
+          </md-list>
+        </div>
+      </div>
+    </form>
+
+    <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+  </div>
 
 </div>

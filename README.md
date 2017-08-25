@@ -2,23 +2,16 @@
 
 > A reusable CRM starter project for real-world business based on Angular 4, Angular-Material & Bootstrap 3. 
 
-This project starts from a popular starter project [AngularClass/AngularStarter](https://github.com/AngularClass/angular-starter). The goal of this project is to create reusable project for real-world business. To achieve this target, we need a solution which should include authentication process, restful API feature with token support and simple but elegant UI design. 
+This project starts from a popular starter project [AngularClass/AngularStarter](https://github.com/AngularClass/angular-starter). The goal of this project is to create reusable project for real-world business. To achieve this target, we need a solution which includes simple authentication process, restful API feature with token support and simple but elegant UI design. 
 
 
 #### Features
 
 * This project is built on the top of AngularClass/Angular-Starter. 
-* The UI part of this project combine Angular-Material and Bootstrap 3. Because the controls from Angular-Material is very limited, there are a few extra components require Bootstrap 3 for help. 
+* The UI part of this project combine Angular-Material and Bootstrap 3. The components from Angular-Material is very limited, and ng-bootstrap for Angular 4 was at Alpha version when I started this project, so I combine some Bootstrap 3 in this project to build the UI. 
 * This project includes ng-charts, pagination, progress-bar, confirmation dialog, etc. features.
-* It uses Json-Server as fake Restful API. (You can simple replace it with your own API)
-
-
-#### Alternatives
-
-There are two similar projects respectively built on the Vue.js and React. If you have interests in those technical stacks. You can find and clone those repositories below.
-
-* [Vue2Crm](https://github.com/harryho/vue2crm.git).
-* [React-Crm](https://github.com/harryho/react-crm.git).
+* It uses Json-Server as fake Restful API. (You can simply replace it with your own API)
+* CRUD functions for Customer, Order and Product.
 
 
 #### Screenshots
@@ -63,7 +56,9 @@ json-server -p 5354 db.json
 ## Resources                          
 ## http://localhost:5354/token        
 ## http://localhost:5354/customers    
-## http://localhost:5354/orders       
+## http://localhost:5354/orders    
+## http://localhost:5354/products      
+## http://localhost:5354/categories         
 ##                                    
 ## Home                               
 ## http://localhost:5354              
@@ -93,3 +88,11 @@ For detailed explanation on how things work, checkout following links please.
 * [angular-material](https://material.angular.io/)
 * [bootstrap](http://getbootstrap.com/)
 * [ng-charts](https://github.com/valor-software/ng2-charts)
+
+
+#### Alternatives
+
+There are two similar projects respectively built on the Vue.js and React. If you have interests in those technical stacks. You can find and clone those repositories below.
+
+* [Vue2Crm](https://github.com/harryho/vue2crm.git).
+* [React-Crm](https://github.com/harryho/react-crm.git).

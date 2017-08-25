@@ -1,6 +1,6 @@
 {
   "name": "ng4crm",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A simple useable CRM project for real-world business based on Angular 4, Angular-Material & Bootstrap 3",
   "keywords": [
     "angular",

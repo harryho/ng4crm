@@ -8,70 +8,69 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 
-import { IOrder , IAddress } from './order';
-import { IProduct  } from '../product';
+import { IProduct } from './product';
 
 @Injectable()
-export class OrderService {
-    private baseUrl = 'orders';
+export class ProductService {
+    private baseUrl = 'products';
 
     constructor(private http: Http, private backend: BackendService) { }
 
-    getOrders(): Observable<IOrder[]> {
+    getProducts(): Observable<IProduct[]> {
         // return this.http.get(this.baseUrl)
-        const url = `${this.baseUrl}?_expand=customer`;
+        const url = `${this.baseUrl}?_expand=category`;
         return this.backend.getAll(url)
             .map(this.extractData)
-            // .do(data => console.log('getOrders: ' + JSON.stringify(data)))
+            // .do(data => console.log('getProducts: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    getOrder(id: number): Observable<IOrder> {
+    getProduct(id: number): Observable<IProduct> {
         if (id === 0) {
-            return Observable.of(this.initializeOrder());
+            return Observable.of(this.initializeProduct());
             // return Observable.create((observer: any) => {
-            //     observer.next(this.initializeOrder());
+            //     observer.next(this.initializeProduct());
             //     observer.complete();
             // });
         };
-        const url = `${this.baseUrl}/${id}/?_expand=customer`;
+        const url = `${this.baseUrl}/${id}/?_expand=category`;
         return this.backend.getById( url, id)
             .map(this.extractData)
-            .do(data => console.log('getOrder: ' + JSON.stringify(data)))
+            .do(data => console.log('getProduct: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    deleteOrder(id: number): Observable<Response> {
+    deleteProduct(id: number): Observable<Response> {
         // let headers = new Headers({ 'Content-Type': 'application/json' });
         // let options = new RequestOptions({ headers: headers });
 
         const url = `${this.baseUrl}/${id}`;
         return this.backend.delete(url, id)
-            // .do(data => console.log('deleteOrder: ' + JSON.stringify(data)))
+            // .do(data => console.log('deleteProduct: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    saveOrder(order: IOrder): Observable<IOrder> {
+    saveProduct(product: IProduct): Observable<IProduct> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        if (order.id === 0) {
-            return this.createOrder(order, options);
+        if (product.id === 0) {
+            return this.createProduct(product, options);
         }
-        return this.updateOrder(order, options);
+        return this.updateProduct(product, options);
     }
 
-    private createOrder(order: IOrder, options: RequestOptions): Observable<IOrder> {
-        order.id = undefined;
-        return this.backend.create(this.baseUrl, order)
+    private createProduct(product: IProduct, options: RequestOptions): Observable<IProduct> {
+        product.id = undefined;
+        return this.backend.create(this.baseUrl, product)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    private updateOrder(order: IOrder, options: RequestOptions): Observable<IOrder> {
-        // const url = `orders/${order.id}`;
-        return this.backend.update(this.baseUrl, order)
-            .map(() => order)
+    private updateProduct(product: IProduct, options: RequestOptions): Observable<IProduct> {
+        // const url = `products/${product.id}`;
+        return this.backend.update(this.baseUrl, product)
+            .map(() => product)
             .catch(this.handleError);
     }
 
@@ -87,21 +86,18 @@ export class OrderService {
         return Observable.throw(error.json().error || 'Server error');
     }
 
-    initializeOrder(): IOrder {
+    initializeProduct(): IProduct {
         // Return an initialized object
         return {
             id: 0,
             avatar: null,
-            reference: null,
-            amount: 0,
-            products: Array<IProduct>(),
-            orderDate: null,
-            shippedDate: null,
-            shipAddress: <IAddress>{},
-            customerId: 0,
-            quantity: 0,
-            isActive: false,
-            customer: null,
+            categoryId: 0,
+            productName: null,
+            unitPrice: 0,
+            // customerId: 0,
+            unitInStock: 0,
+            // isActive: false,
+            // customer: null,
         };
     }
 }

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Http, HttpModule,BrowserXhr  } from '@angular/http';
 import { MaterialModule , MdDialogRef, MdDialog} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 
 import {NgProgressModule, NgProgressBrowserXhr, NgProgressService } from 'ngx-progressbar';
 
@@ -44,6 +45,7 @@ import { ChartsModule } from 'ng2-charts';
 import { RootModule } from './root';
 import { CustomerModule } from './customer';
 import { OrderModule } from './order';
+import { ProductModule } from './product';
 
 // Providers
 import { AppPreloader } from './app.preloader';
@@ -81,8 +83,7 @@ type StoreType = {
     // LogoutComponent,
     RootComponent,
     DashboardComponent,
-    ConfirmDialog,
-
+    ConfirmDialog
   ],
   /**
    * Import Angular's modules.
@@ -98,8 +99,8 @@ type StoreType = {
     RouterModule.forRoot(ROUTES, {preloadingStrategy: AppPreloader, initialNavigation:false}),
     CustomerModule,
     OrderModule,
-    RootModule,
-
+    ProductModule,
+    RootModule
   ],
   entryComponents:[ConfirmDialog],
   /**
@@ -107,14 +108,13 @@ type StoreType = {
    */
   providers: [
     AuthGuard,
-
     AppPreloader,
     BackendService,
     AuthenticationService,
     PagerService,
     { provide: BrowserXhr, useClass: NgProgressBrowserXhr } ,
     ENV_PROVIDERS,
-    APP_PROVIDERS,
+    APP_PROVIDERS
   ]
 })
 export class AppModule {

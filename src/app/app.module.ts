@@ -76,11 +76,8 @@ type StoreType = {
   declarations: [
     AppComponent,
     AboutComponent,
-    // HomeComponent,
     ErrorPageComponent,
-    // XLargeDirective,
     LoginComponent,
-    // LogoutComponent,
     RootComponent,
     DashboardComponent,
     ConfirmDialog
@@ -123,7 +120,7 @@ export class AppModule {
     public appRef: ApplicationRef,
     public appState: AppState,
     private progress: NgProgressService
-  ) {   }
+  ) {}
 
   public hmrOnInit(store: StoreType) {
     if (!store || !store.state) {

@@ -24,7 +24,8 @@ This project starts from a popular starter project [AngularClass/AngularStarter]
 
 ![Screenshot4](screenshots/screenshot-4.JPG)
 
-## Build Setup
+## Build & Setup
+
 
 ``` bash
 
@@ -36,14 +37,16 @@ git clone https://github.com/harryho/ng4crm.git
 
 ## clone json-server to folder server
 cd ng4crm
-git clone https://github.com/typicode/json-server.git server
 cd server
-npm install json-server
-
 ## replace db.json and routes.json files
 copy /Y ..\db\*.json
 
-## start json-server
+## Start a new terminal and navigate to folder server
+
+## Install json-server
+npm install -g json-server
+
+## Start json-server
 json-server -p 5354 db.json
 
 ## You will see the following output. You can test the URLs via browser.
@@ -63,7 +66,8 @@ json-server -p 5354 db.json
 ## Home                               
 ## http://localhost:5354              
 
-# install dependences for Angular 4 CRM
+
+# Install dependences for Angular 4 CRM
 cd ..
 
 # WINDOWS only. In terminal as administrator

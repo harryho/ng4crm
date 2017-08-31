@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
     <h1>About</h1>
     <div>
       <h3>
-        Reeteek Angular 4 CRM Version 1.0.0
+        Reeteek Angular 4 CRM Version 1.2.0
       </h3>
     </div>
     </md-card>
@@ -36,7 +36,6 @@ export class AboutComponent implements OnInit {
         this.localState = data.yourData;
       });
 
-    console.log('hello `About` component');
     /**
      * static data that is bundled
      * var mockData = require('assets/mock-data/mock-data.json');

@@ -34,20 +34,17 @@ git clone https://github.com/harryho/ng4crm.git
 
 
 # prepare Json-Server as fake Restful API
-
-## clone json-server to folder server
 cd ng4crm
 cd server
 ## replace db.json and routes.json files
 copy /Y ..\db\*.json
 
 ## Start a new terminal and navigate to folder server
-
-## Install json-server
 npm install -g json-server
 
-## Start json-server
+## start json-server
 json-server -p 5354 db.json
+
 
 ## You will see the following output. You can test the URLs via browser.
 ##

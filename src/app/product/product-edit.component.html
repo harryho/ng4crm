@@ -60,8 +60,8 @@
                     <div class="col-md-8">
                         <input class="form-control" 
                                 id="quantityId" 
-                                type="text" 
-                                placeholder="Email (required)" 
+                                type="number" 
+                                placeholder="Quantity (required)" 
                                 formControlName="quantity" />
                         <span class="help-block" *ngIf="displayMessage.quantity">
                                 {{displayMessage.quantity}}
@@ -69,14 +69,14 @@
                     </div>
                 </div>
                 <div class="form-group" [ngClass]="{'has-error': displayMessage.customerId}">
-                    <label class="col-md-2 control-label" for="customerIdId">Age (0-150)</label>
+                    <label class="col-md-2 control-label" for="customerId">Category</label>
 
                     <div class="col-md-8">
                    
-                          <select  class="form-control"  id="customerIdId"  formControlName="customerId">
-                            <option *ngFor="let customer of customers" [ngValue]="customer.id" [selected]="product.customerId === customer.id">{{customer.firstName}} {{customer.lastName}}</option>
+                          <select  class="form-control"  id="customerId"  formControlName="customerId">
+                            <option *ngFor="let category of categories" [ngValue]="category.id" [selected]="product.categoryId === category.id">{{category.categoryName}} </option>
                         </select>
-                        <span class="help-block" *ngIf="displayMessage.customerId">
+                        <span class="help-block" *ngIf="displayMessage.categoryId">
                                 {{displayMessage.mixin-arguments-4}}
                         </span>
                     </div>

@@ -35,18 +35,21 @@ git clone https://github.com/harryho/ng4crm.git
 
 # prepare Json-Server as fake Restful API
 cd ng4crm
-cd server
-## replace db.json and routes.json files
-copy /Y ..\db\*.json
 
-## Start a new terminal and navigate to folder server
-npm install -g json-server
+# WINDOWS only. In terminal as administrator
+npm install -g node-pre-gyp
 
-## start json-server
-json-server -p 5354 db.json
+# install the packages with npm
+npm install
+
+# start the app
+npm start
+
+# serve with hot reload at localhost:3000
+npm run dev
 
 
-## You will see the following output. You can test the URLs via browser.
+## You will see the following output. You can test the API with URLs via browser.
 ##
 ## \{^_^}/ hi!                        
 ##                                    
@@ -62,22 +65,15 @@ json-server -p 5354 db.json
 ##                                    
 ## Home                               
 ## http://localhost:5354              
+## 
+## ...........................
+## ...........................
+## [at-loader] Checking started in a separate process...
 
+## [at-loader] Ok, 0.002 sec.
 
-# Install dependences for Angular 4 CRM
-cd ..
+# Access the Reetek Angular 4 CRM at localhost:3000
 
-# WINDOWS only. In terminal as administrator
-npm install -g node-pre-gyp
-
-# install the repo with npm
-npm install
-
-# start the server
-npm start
-
-# serve with hot reload at localhost:3000
-npm run server:dev:hmr
 
 ```
 

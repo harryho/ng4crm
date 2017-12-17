@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ViewChildren, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, FormControlName } from '@angular/forms';
 import { ActivatedRoute, Router  } from '@angular/router';
+import {  Inject } from '@angular/core';
+import {MD_DIALOG_DATA, MdDialog, MdDialogRef } from '@angular/material';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/fromEvent';
@@ -8,63 +10,57 @@ import 'rxjs/add/observable/merge';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { IProduct } from './product';
-import { ProductService } from './product.service';
+import { IProduct } from '../product';
+import { ProductService } from '../product';
 
 import { NumberValidators } from '../shared/number.validator';
 import { GenericValidator } from '../shared/generic-validator';
-import { ICategory } from "./index";
+import {CustomerService, ICustomer} from "../customer";
 
 @Component({
-    templateUrl: './product-edit.component.html',
-    styles: [`
-    .example-section {
-        display: flex;
-        align-content: center;
-        align-items: center;
-        height: 60px;
-        }
-
-        .example-margin {
-        margin: 0 10px;
-        }
-    `]
+    templateUrl: './product-dialog.component.html',
 })
-export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProductDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
-    pageTitle: string = 'Product Edit';
+    pageTitle: string = 'Add product to order';
     errorMessage: string;
     productForm: FormGroup;
 
     product: IProduct;
     private sub: Subscription;
     showImage:boolean;
-    categories:ICategory [];
+    customers:ICustomer [];
 
     // Use with the generic validation messcustomerId class
     displayMessage: { [key: string]: string } = {};
     private validationMessages: { [key: string]: { [key: string]: string } };
     private genericValidator: GenericValidator;
 
-    constructor(private fb: FormBuilder,
+    constructor( private fb: FormBuilder,
                 private route: ActivatedRoute,
                 private router: Router,
-                private productService: ProductService) {
+                private productService: ProductService,
+                private customerService: CustomerService,
+        @Inject(MD_DIALOG_DATA) public data: any, public dialogRef: MdDialogRef<ProductDialogComponent>
+       ) {
 
         // Defines all of the validation messcustomerIds for the form.
         // These could instead be retrieved from a file or database.
         this.validationMessages = {
             product: {
-                required: 'Product name is required.',
-                minlength: 'Product name must be at least one characters.',
-                maxlength: 'Product name cannot exceed 200 characters.'
+                required: 'Product first name is required.',
+                minlength: 'Product first name must be at least one characters.',
+                maxlength: 'Product first name cannot exceed 100 characters.'
             },
             price: {
-                 range: 'Price of the product must be between 1 (lowest) and 9999 (highest).'
+                 range: 'Age of the product must be between 1 (lowest) and 9999 (highest).'
             },
             quantity: {
-                 range: 'Quantity of the product must be between 1 (lowest) and 20 (highest).'
+                 range: 'Age of the product must be between 1 (lowest) and 20 (highest).'
+            },
+            customerId: {
+                range: 'Age of the product must be between 1 (lowest) and 99999 (highest).'
             }
         };
 
@@ -90,7 +86,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
             }
         );
 
-        this.getCategories();
+        this.getCustomers();
     }
 
     ngOnDestroy(): void {
@@ -116,12 +112,15 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
             );
     }
 
-    getCategories(): void {
-       this.productService.getCategories()
-                .subscribe(categories => 
-                    this.categories = categories,
+    
+    getCustomers() {
+        this.customerService.getCustomers()
+                .subscribe(customers => {
+                    this.customers = customers;
+                },
                 error => this.errorMessage = <any>error);
     }
+
 
     onProductRetrieved(product: IProduct): void {
         if (this.productForm) {
@@ -140,7 +139,8 @@ export class ProductEditComponent implements OnInit, AfterViewInit, OnDestroy {
             product: this.product.productName,
             price: this.product.unitPrice,
             quantity:  this.product.unitInStock,
-            categoryId: this.product.categoryId,     
+            // customerId: this.product.customerId,     
+            // isActive: this.product.isActive
         });
     }
 

@@ -1,0 +1,83 @@
+<div>
+
+    <div md-dialog-content>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {{pageTitle}}
+            </div>
+
+            <div class="panel-body">
+
+                <form class="form-horizontal" novalidate (ngSubmit)="saveProduct()" [formGroup]="productForm">
+                    <fieldset>
+
+                        <div class="form-group">
+                            <img style="padding-left:100px;" *ngIf='showImage && product.avatar' [src]='product.avatar' [title]='product.product | uppercase'
+                                [style.width.px]='imcustomerIdWidth' [style.margin.px]='imcustomerIdMargin'>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error': displayMessage.product }">
+                            <label class="col-md-2 control-label" for="productId">Product</label>
+
+                            <div class="col-md-8">
+                                <input class="form-control" id="productId" type="text" placeholder="Product (required)" formControlName="product" />
+                                <span class="help-block" *ngIf="displayMessage.product">
+                                {{displayMessage.product}}
+                        </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'has-error': displayMessage.price}">
+                            <label class="col-md-2 control-label" for="priceId">Price</label>
+
+                            <div class="col-md-8">
+                                <input class="form-control" id="priceId" type="text" placeholder="Price (required)" formControlName="price" />
+                                <span class="help-block" *ngIf="displayMessage.price">
+                                {{displayMessage.price}}
+                        </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'has-error': displayMessage.quantity}">
+                            <label class="col-md-2 control-label" for="quantityId">Quantiy</label>
+
+                            <div class="col-md-8">
+                                <input class="form-control" id="quantityId" type="text" placeholder="Email (required)" formControlName="quantity" />
+                                <span class="help-block" *ngIf="displayMessage.quantity">
+                                {{displayMessage.quantity}}
+                                </span>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <div class="col-md-6 col-md-offset-2">
+                                <span>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    style="width:80px;margin-right:10px"
+                                    [disabled]='!productForm.valid'>
+                                Save
+                            </button>
+                        </span>
+                                <span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               [routerLink]="['/products']">
+                                Cancel
+                            </a>
+                        </span>
+
+                            </div>
+                        </div>-->
+                    </fieldset>
+                </form>
+
+                <!--<div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>-->
+            </div>
+
+        </div>
+    </div>
+    <div md-dialog-actions>
+        <button md-button [md-dialog-close]="ACTION_CONFIRM">Confirm</button>
+        <button md-button [md-dialog-close]="ACTION_CANCEL">Cancel</button>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+<md-sidenav-container>
 <md-card  class='light'>
     <div class='panel-heading'>
         <h1> {{pageTitle}}
@@ -115,7 +116,7 @@
                 <div *ngIf='!orders || orders.length <=0'>   No record found !</div>
         </div>   
 </md-card >
-<md-sidenav class="search-panel" dark #sidenav mode="over" opened="false" >
+<md-sidenav class="search-panel" dark #sidenav mode="push" opened="false" >
     <md-card class="profile-card">
         <md-card-header>
             <div md-card-avatar class="avatar"></div>                          
@@ -146,3 +147,4 @@
             
     </md-nav-list>
 </md-sidenav>
+</md-sidenav-container>

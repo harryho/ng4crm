@@ -93,7 +93,7 @@ type StoreType = {
     HttpModule,
     ChartsModule,
     NgProgressModule, 
-    RouterModule.forRoot(ROUTES, {preloadingStrategy: AppPreloader, initialNavigation:false}),
+    RouterModule.forRoot(ROUTES, {useHash:false}),
     CustomerModule,
     OrderModule,
     ProductModule,

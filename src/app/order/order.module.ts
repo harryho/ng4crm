@@ -8,6 +8,7 @@ import { OrderListComponent } from './order-list.component';
 import { OrderDetailComponent } from './order-detail.component';
 import { OrderDetailGuard, OrderEditGuard } from './order-guard.service';
 import { OrderEditComponent } from './order-edit.component';
+import { ProductDialogComponent } from './product-dialog.component';
 
 import { OrderService } from './order.service';
 
@@ -39,13 +40,14 @@ import {MaterialModule} from '@angular/material';
      */
     OrderListComponent,
     OrderDetailComponent,
-    OrderEditComponent
+    OrderEditComponent,
+    ProductDialogComponent
   ],
   providers: [
     OrderService,
     OrderDetailGuard,
     OrderEditGuard
-    
-  ]
+  ],
+    entryComponents:[ProductDialogComponent],
 })
 export class OrderModule {}

@@ -7,8 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
-
-import { IProduct } from './product';
+import { IProduct, ICategory } from './product';
 
 @Injectable()
 export class ProductService {
@@ -58,6 +57,14 @@ export class ProductService {
             return this.createProduct(product, options);
         }
         return this.updateProduct(product, options);
+    }
+
+    getCategories(): Observable<ICategory[]> {
+        // return this.http.get(this.baseUrl)
+        const url = 'categories'
+        return this.backend.getAll(url)
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     private createProduct(product: IProduct, options: RequestOptions): Observable<IProduct> {

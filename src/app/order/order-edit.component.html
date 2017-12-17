@@ -27,8 +27,9 @@
                         </span>
                 <span class="pull-right">
                     <a class="btn btn-default"
-                        style="width:80px"
-                        [routerLink]="['/orders']">
+                        style="width:80px" (click)="addProduct(order)" >
+
+                        <!--[routerLink]="['/orders']">-->
                         Add
                     </a>
                 </span>
@@ -181,7 +182,7 @@
         </div>
       
         <div class="row">
-          <md-list>
+          <md-list *ngIf="order!=null && order.products!=null">
             <h3 md-subheader>Products</h3>
             <md-list-item style="background-color:#e7ecf7;"  *ngFor="let product of order.products">
               <md-icon md-list-icon>folder</md-icon>
@@ -190,7 +191,6 @@
                                     <md-icon>delete</md-icon>
                                 </button >
               <p md-line> AUD ${{product.price | number }} </p>
-                <!--<md-divider></md-divider>-->
             </md-list-item>
           
             <!--<h3 md-subheader>Notes</h3>

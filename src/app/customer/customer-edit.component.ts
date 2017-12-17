@@ -97,6 +97,8 @@ showImage:boolean;
                 this.getCustomer(id);
             }
         );
+
+        this.sub.add(null);
     }
 
     ngOnDestroy(): void {

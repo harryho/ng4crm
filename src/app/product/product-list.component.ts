@@ -72,7 +72,7 @@ export class ProductListComponent implements OnInit {
         // get current page of items
         this.pagedItems = this.products.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
-
+    
     searchProducts(filters: any) {
         if (filters) {
             this.productService.getProducts()
@@ -84,7 +84,7 @@ export class ProductListComponent implements OnInit {
 
                         Object.keys(filters).forEach((k) => {
                             match = match && filters[k] ?
-                                product[k].toLocaleLowerCase().indexOf(filters[k].toLocaleLowerCase()) > -1 : match;
+                               product[k] && product[k].toLocaleLowerCase().indexOf(filters[k].toLocaleLowerCase()) > -1 : match;
                         })
                         return match;
                     });

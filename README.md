@@ -1,5 +1,9 @@
 # Angular CRM
 
+## Note: This repository is no longer to keep up with latest Angular framework. Also this project was critized about blending the Material Design and Bootstrap together. I realized this issue from the start, but back to 2016, a few common controls of Angular Material were so buggy and ugly, so I mixed bootstrap within this starter project. Now the Angular Material is much better. I created a new repository [ng-md-app](https://github.com/harryho/ng-md-app.git), which is built on the Angular and Material Design without boostrap.
+
+## News: Since bootstrap 4 was finally released, it is time to try it out with Angular 5+. 
+
 > A reusable CRM starter project for real-world business based on Angular 4, Angular-Material & Bootstrap 3. 
 
 This project starts from a popular starter project [AngularClass/AngularStarter](https://github.com/AngularClass/angular-starter). The goal of this project is to create reusable project for real-world business. To achieve this target, we need a solution which includes simple authentication process, restful API feature with token support and simple but elegant UI design. 

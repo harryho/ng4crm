@@ -3,7 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 import {  AuthenticationService } from '../_services';
 import { Observable } from 'rxjs/Observable';
-import {MaterialModule} from '@angular/material';
+import { MaterialModule } from '@angular/material';
 
 
 @Component({

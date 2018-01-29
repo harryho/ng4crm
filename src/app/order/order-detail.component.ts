@@ -13,7 +13,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     order: IOrder;
     errorMessage: string;
     private sub: Subscription;
-       imcustomerIdWidth: number = 80;
+    imcustomerIdWidth: number = 80;
     imcustomerIdMargin: number = 2;
 
     constructor(private route: ActivatedRoute,
@@ -36,7 +36,6 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
     getOrder(id: number) {
         this.orderService.getOrder(id).subscribe(
             order =>  this.order = order,
-                //  this.order.avatar = this.order.avatar?`/assets/${this.order.avatar}`:this.order.avatar; },
             error => this.errorMessage = <any>error);
     }
 

@@ -96,7 +96,6 @@
     "hammerjs": "^2.0.8",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
-    "material-ui": "^0.18.5",
     "ng2-charts": "^1.6.0",
     "ngx-progressbar": "^2.0.3",
     "reflect-metadata": "^0.1.10",

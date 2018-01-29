@@ -12,7 +12,6 @@ import { AppState } from './app.service';
 import { User } from './_models'
 import { Router } from '@angular/router';
 import { MdSidenav } from '@angular/material';
-// import { LoginComponent} from './login';
 import { RootComponent } from './root'
 import { AuthenticationService } from "./_services";
 /**

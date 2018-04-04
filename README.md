@@ -1,8 +1,10 @@
 # Angular CRM
 
-## Note: This repository is no longer to keep up with latest Angular framework. Also this project was critized about blending the Material Design and Bootstrap together. I realized this issue from the start, but back to 2016, a few common controls of Angular Material were so buggy and ugly, so I mixed bootstrap within this starter project. Now the Angular Material is much better. I created a new repository [ng-md-app](https://github.com/harryho/ng-md-app.git), which is built on the Angular and Material Design without boostrap.
+### <p style="color: red; font-weight:bold;"> Warning! This repository is no longer maintained. Please check out the new one.</p>
 
-## News: Since bootstrap 4 was finally released, it is time to try it out with Angular 5+. 
+## [ng-md-app](https://github.com/harryho/ng-md-app.git) is built on the latest Angular and Materail Design.
+
+
 
 > A reusable CRM starter project for real-world business based on Angular 4, Angular-Material & Bootstrap 3. 
 

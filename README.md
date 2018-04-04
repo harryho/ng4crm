@@ -1,8 +1,6 @@
 # Angular CRM
 
-### <p style="color: red; font-weight:bold;"> Warning! This repository is no longer maintained. Please check out the new one.</p>
-
-## [ng-md-app](https://github.com/harryho/ng-md-app.git) is built on the latest Angular and Materail Design.
+## __**Warning! This repository is no longer maintained. Please check out the new one. [ng-md-app](https://github.com/harryho/ng-md-app.git) is built on the latest Angular and Materail Design.**__
 
 
 

@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule,BrowserXhr  } from '@angular/http';
-import { MaterialModule , MdDialogRef, MdDialog} from '@angular/material';
+import { MaterialModule, MdDialogRef, MdDialog } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
 
-import {NgProgressModule, NgProgressBrowserXhr, NgProgressService } from 'ngx-progressbar';
+import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 
 import {
   NgModule,
@@ -38,8 +38,8 @@ import { ErrorPageComponent } from './errorpage';
 import { LoginComponent } from './login';
 
 import { RootComponent } from './root';
-import { DashboardComponent } from './dashboard'
-import { ConfirmDialog} from './shared'
+import { DashboardComponent } from './dashboard';
+import { ConfirmDialog } from './shared';
 
 import { ChartsModule } from 'ng2-charts';
 import { RootModule } from './root';
@@ -92,7 +92,7 @@ type StoreType = {
     FormsModule,
     HttpModule,
     ChartsModule,
-    NgProgressModule, 
+    NgProgressModule,
     RouterModule.forRoot(ROUTES, {useHash:false}),
     CustomerModule,
     OrderModule,
@@ -118,8 +118,7 @@ export class AppModule {
 
   constructor(
     public appRef: ApplicationRef,
-    public appState: AppState,
-    private progress: NgProgressService
+    public appState: AppState
   ) {}
 
   public hmrOnInit(store: StoreType) {
@@ -171,14 +170,6 @@ export class AppModule {
      */
     store.disposeOldHosts();
     delete store.disposeOldHosts;
-  }
-
-  ngAfterContentInit(){
-    
-   this.progress.start();
-   setTimeout(()=>{
-     this.progress.done();
-   }, 2000);
   }
 
 }

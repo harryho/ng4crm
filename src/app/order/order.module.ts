@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import {NgProgressModule, NgProgressBrowserXhr, NgProgressService } from 'ngx-progressbar';
+// import {NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 
 
 import { OrderListComponent } from './order-list.component';
@@ -13,7 +13,7 @@ import { ProductDialogComponent } from './product-dialog.component';
 import { OrderService } from './order.service';
 
 import { SharedModule } from '../shared/shared.module';
-import {MaterialModule} from '@angular/material';
+import { MaterialModule } from '@angular/material';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import {MaterialModule} from '@angular/material';
     SharedModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgProgressModule,
+    // NgProgressModule,
     // InMemoryWebApiModule.forRoot(OrderData),
     RouterModule.forChild([
       { path: 'orders', component: OrderListComponent },
